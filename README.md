@@ -14,6 +14,11 @@ Instalar as dependências do PHP.
 composer install
 ```
 
+Instalar as dependências do Node.js.
+```
+npm install
+```
+
 Gerar a chave no arquivo .env.
 ```
 php artisan key:generate
@@ -23,6 +28,12 @@ Iniciar o projeto  criado com Laravel.
 ```
 php artisan serve
 ```
+
+Executar as bibliotecas Node.js
+```
+npm run dev
+```
+
 Acessar o conteúdo padrão do Laravel.
 ```
 http://127.0.0.1:8000
@@ -39,6 +50,16 @@ Iniciar o projeto criado com laravel
 ```
 php artisan serve
 ``` 
+
+Instalar as dependências do Node.js.
+```
+npm install
+```
+
+Executar as bibliotecas Node.js
+```
+npm run dev
+```
 
 Acessar o conteúdo padrão do Laravel 
 ```
