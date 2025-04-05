@@ -65,6 +65,21 @@ Acessar o conteúdo padrão do Laravel
 ```
 http://127.0.0.1:8000
 ```
+Criar Controller com php artisan.
+```
+php artisan make:controller nome-controller
+```
+```
+php artisan make:controller ProjectController
+```
+
+Criar View com php artisan.
+```
+php artisan make:view nome-view
+```
+```
+php artisan make:view project.index
+```
 
 ## Como enviar e baixar os arquivos do GitHub
 
