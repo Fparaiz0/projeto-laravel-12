@@ -39,6 +39,11 @@ Executar as migration para criar as tabelas e as colunas.
 php artisan migrate
 ```
 
+Executar seed com php artisan para cadastrar registros iniciais. 
+```
+php artisan db:seed
+```
+
 Iniciar o projeto  criado com Laravel.
 ```
 php artisan serve
