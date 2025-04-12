@@ -33,6 +33,11 @@ Gerar a chave no arquivo .env.
 php artisan key:generate
 ```
 
+Executar as migration para criar as tabelas e as colunas.
+```
+php artisan migrate
+```
+
 Iniciar o projeto  criado com Laravel.
 ```
 php artisan serve
