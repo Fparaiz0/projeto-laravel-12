@@ -8,6 +8,15 @@
 ## Como rodar o projeto baixado 
 
 - Duplicar o arquivo ".env.example" e renomear para ".env". 
+- Alterar as credenciais do banco de dados.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=project
+DB_USERNAME=  
+DB_PASSWORD=
+```
 
 Instalar as dependências do PHP.
 ```
@@ -79,6 +88,19 @@ php artisan make:view nome-view
 ```
 ```
 php artisan make:view project.index
+```
+
+Criar migration com php artisan. 
+```
+php artisan make:migration create_nome_table
+```
+```
+php artisan make:migration create_project_table
+```
+
+Executar as migration para criar as tabelas e as colunas.
+```
+php artisan migrate
 ```
 
 ## Como enviar e baixar os arquivos do GitHub
