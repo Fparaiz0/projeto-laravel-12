@@ -145,7 +145,6 @@ git commit -m "base projeto"
 
 Enviar os commits locais, para um repositório remoto. 
 ```
-
 git push <remote> <branch>
 git push origin develop
 ```
