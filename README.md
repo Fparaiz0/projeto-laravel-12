@@ -109,6 +109,19 @@ Executar as migration para criar as tabelas e as colunas.
 php artisan migrate
 ```
 
+Criar seed com php artisan para cadastrar registros iniciais.
+```
+php artisan make:seeder NomeSeeder
+```
+```
+php artisan make:seeder UserSeeder
+```
+
+Executar seed com php artisan para cadastrar registros iniciais. 
+```
+php artisan db:seed
+```
+
 ## Como enviar e baixar os arquivos do GitHub
 
 - Criar o repositório **"projeto-laravel-12"** no GitHub.
