@@ -117,7 +117,6 @@ git clone -b <branch_name> <repository_url>.
 
 Alterar o Usuário Globalmente (para todos os repositórios). 
 ```
-
 git config --global user.name "SeuNomeDeUsuario"
 git config --global user.email "seuemail@exemplo.com"
 ```
