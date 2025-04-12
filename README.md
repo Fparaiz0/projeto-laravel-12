@@ -1,6 +1,7 @@
 ## Requisitos 
 
 * PHP 8.2 ou superior - Conferir a versão: php -v 
+* MySQL 8.0 ou superior - Conferir a versão: mysql --version
 * Composer - Conferir a instalação: composer --version
 * Node.js 22 ou superior - Conferir a versão: node -v 
 * GIT - Conferir se está instalado o GIT: git -v 
