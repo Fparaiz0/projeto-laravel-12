@@ -127,6 +127,16 @@ Executar seed com php artisan para cadastrar registros iniciais.
 php artisan db:seed
 ```
 
+Desfazer todas as migrations e executá-las novamente.
+```
+php artisan migrate:fresh
+```
+
+Desfar todas as migrations, executá-las novamente e rodar as seeds.
+```
+php artisan migrate:fresh --seed
+```
+
 ## Como enviar e baixar os arquivos do GitHub
 
 - Criar o repositório **"projeto-laravel-12"** no GitHub.

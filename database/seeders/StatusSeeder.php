@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Status;
+use Exception;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder
@@ -12,22 +13,27 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        //Se não encontrar o registro com o nome, cadastra o registro no BD
-        Status::firstOrCreate(
-            ['name' => 'Ativo', 'id' => 1],
-            ['id' => 1, 'name' => 'Ativo'],
-        );
-        Status::firstOrCreate(
-            ['name' => 'Inativo', 'id' => 2],
-            ['id' => 2, 'name' => 'Inativo'],
-        );
-        Status::firstOrCreate(
-            ['name' => 'Aguardando Confirmação', 'id' => 3],
-            ['id' => 3, 'name' => 'Aguardando Confirmação'],
-        );
-        Status::firstOrCreate(
-            ['name' => 'Spam', 'id' => 4],
-            ['id' => 4, 'name' => 'Spam'],
-        );
+        //Capturar possíveis exceções durante a execução do código.
+        try {
+            //Se não encontrar o registro com o nome, cadastra o registro no BD   
+            Status::firstOrCreate(
+                ['name' => 'Ativo', 'id' => 1],
+                ['id' => 1, 'name' => 'Ativo'],
+            );
+            Status::firstOrCreate(
+                ['name' => 'Inativo', 'id' => 2],
+                ['id' => 2, 'name' => 'Inativo'],
+            );
+            Status::firstOrCreate(
+                ['name' => 'Aguardando Confirmação', 'id' => 3],
+                ['id' => 3, 'name' => 'Aguardando Confirmação'],
+            );
+            Status::firstOrCreate(
+                ['name' => 'Spam', 'id' => 4],
+                ['id' => 4, 'name' => 'Spam'],
+            );
+        } catch (Exception $e) {
+            //Lidar com as exceções, se necessário.
+        }
     }
 }
