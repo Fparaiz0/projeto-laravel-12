@@ -14,7 +14,7 @@ class CoursesController extends Controller
         return view('courses.index');
     }
 
-    //Carregar o formulário de cadastro de usúario.
+    //Carregar o formulário de cadastro do usúario.
     public function create()
     {
         // Carregar a view

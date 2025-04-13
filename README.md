@@ -1,3 +1,9 @@
+## 👋 Bem-vindo ao repositório!
+
+Olá! Seja muito bem-vindo(a) a este projeto. Aqui você encontrará todas as informações necessárias para entender, instalar, executar e contribuir com este repositório.
+
+Fique à vontade para explorar, abrir issues, sugerir melhorias ou contribuir com pull requests. Toda colaboração é muito bem-vinda!
+
 ## Requisitos 
 
 * PHP 8.2 ou superior - Conferir a versão: php -v 
