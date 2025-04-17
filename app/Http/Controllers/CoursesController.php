@@ -24,7 +24,6 @@ class CoursesController extends Controller
     //Cadastrar no banco de dados o novo curso.
     public function store(Request $request)
     {
-        //dd($request);
         //Cadastrar no banco de dados na tabela cursos.
         Course::create([
             'name' => $request->name
