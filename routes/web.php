@@ -19,9 +19,9 @@ Route::get('/create-course', [CoursesController::class, 'create'])->name('course
 Route::post('/store-course', [CoursesController::class, 'store'])->name('courses.store');
 
 // Cursos Status
-Route::get('/index-course-status', [CourseStatusController::class, 'index'])->name('course-status.index');
-Route::get('/create-course-status', [CourseStatusController::class, 'create'])->name('course-status.create');
-Route::post('/store-course-status', [CourseStatusController::class, 'store'])->name('course-status.store');
+Route::get('/index-course-status', [CourseStatusController::class, 'index'])->name('courses-status.index');
+Route::get('/create-course-status', [CourseStatusController::class, 'create'])->name('courses-status.create');
+Route::post('/store-course-status', [CourseStatusController::class, 'store'])->name('courses-status.store');
 
 // Turmas
 Route::get('/index-course-batches', [CourseBatchController::class, 'index'])->name('courses-batches.index');
