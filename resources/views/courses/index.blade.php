@@ -6,5 +6,5 @@
         {{ session('success')}}
     </p>
 @endif
-    <a href="{{ route('courses.create') }}">Cadastrar Cursos</a>
+    <a href="{{ route('courses.create') }}">Cadastrar os cursos</a>
 </div>

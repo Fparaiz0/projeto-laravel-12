@@ -1,5 +1,5 @@
 <div>
-    <h2>Cadastrar o curso</h2>
+    <h2>Cadastrar os cursos!</h2>
 
     <form action="{{ route('courses.store') }}" method="POST">
         @csrf

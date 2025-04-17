@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Bem-vindo ao Projeto!</h1>
-        <a href="{{ route('courses.index') }}">Listar os cursos</a>
+        <a href="{{ route('courses.index') }}">Listar os cursos</a><br>
+        <a href="{{ route('users.index') }}">Listar os usuários</a>
     </body>
 </html>
