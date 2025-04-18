@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseStatus;
 use Illuminate\Http\Request;
 
 class CourseStatusController extends Controller
@@ -18,5 +19,17 @@ class CourseStatusController extends Controller
     {
         // Carregar a view
         return view('courses-status.create');
+    }
+
+    // Cadastrar no banco de dados o status do curso.
+    public function store(Request $request)
+    {
+        // Cadastrar no banco de dados na tabela course_statuses.
+        CourseStatus::create([
+            'name' => $request->name,
+        ]);
+
+        // Redirecionar o usuário, enviar a mensagem de sucesso
+        return redirect()->route('courses-status.index')->with('success', 'Usuário cadastrado com sucesso!');
     }
 }
