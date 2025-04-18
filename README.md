@@ -21,8 +21,8 @@ DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=project
-DB_USERNAME=  
-DB_PASSWORD=
+DB_USERNAME=NomedoUsuário
+DB_PASSWORD=SenhadoBanco
 ```
 
 Instalar as dependências do PHP.
