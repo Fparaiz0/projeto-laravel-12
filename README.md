@@ -20,7 +20,7 @@ Fique à vontade para explorar, abrir issues, sugerir melhorias ou contribuir co
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=project
+DB_DATABASE=NomedoBanco
 DB_USERNAME=NomedoUsuário
 DB_PASSWORD=SenhadoBanco
 ```
