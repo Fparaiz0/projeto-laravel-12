@@ -5,8 +5,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,6 +45,6 @@ Route::get('/create-users', [UserController::class, 'create'])->name('users.crea
 Route::post('/store-users', [UserController::class, 'store'])->name('users.store');
 
 // Usuários Status
-Route::get('/index-status', [StatusController::class, 'index'])->name('status.index');
-Route::get('/create-status', [StatusController::class, 'create'])->name('status.create');
-Route::post('/store-status', [StatusController::class, 'store'])->name('status.store');
+Route::get('/index-user-status', [UserStatusController::class, 'index'])->name('user-status.index');
+Route::get('/create-user-status', [UserStatusController::class, 'create'])->name('user-status.create');
+Route::post('/store-user-status', [UserStatusController::class, 'store'])->name('user-status.store');

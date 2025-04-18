@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 UserSeeder::class,
                 CourseStatusSeeder::class,
-                StatusSeeder::class,
+                UserStatusSeeder::class,
             ]);
         }
 
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
                 CourseStatusSeeder::class,
                 LessonSeeder::class,
                 ModuleSeeder::class,
-                StatusSeeder::class,
+                UserStatusSeeder::class,
             ]);
         }
     }

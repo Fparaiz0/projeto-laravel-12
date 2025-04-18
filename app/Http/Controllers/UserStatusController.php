@@ -2,37 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Status;
+use App\Models\UserStatus;
 use Illuminate\Http\Request;
 
-class StatusController extends Controller
+class UserStatusController extends Controller
 {
     // Listar os status
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $statuses = Status::orderBy('id', 'DESC')->get();
+        $statuses = UserStatus::orderBy('id', 'DESC')->get();
 
         // Carregar a view
-        return view('status.index', ['statuses' => $statuses]);
+        return view('user-status.index', ['statuses' => $statuses]);
     }
 
     //Carregar o formulário de cadastro dos status.
     public function create()
     {
         // Carregar a view
-        return view('status.create');
+        return view('user-status.create');
     }
 
     // Cadastrar no banco de dados o novo status.
     public function store(Request $request)
     {
         // Cadastrar no banco de dados na tabela statuses.
-        Status::create([
+        UserStatus::create([
             'name' => $request->name,
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('status.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('user-status.index')->with('success', 'Usuário cadastrado com sucesso!');
     }
 }
