@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseBatchController;
-use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
@@ -14,9 +14,9 @@ Route::get('/', function () {
 });
 
 // Cursos 
-Route::get('/index-course', [CoursesController::class, 'index'])->name('courses.index');
-Route::get('/create-course', [CoursesController::class, 'create'])->name('courses.create');
-Route::post('/store-course', [CoursesController::class, 'store'])->name('courses.store');
+Route::get('/index-course', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/create-course', [CourseController::class, 'create'])->name('courses.create');
+Route::post('/store-course', [CourseController::class, 'store'])->name('courses.store');
 
 // Cursos Status
 Route::get('/index-course-status', [CourseStatusController::class, 'index'])->name('courses-status.index');

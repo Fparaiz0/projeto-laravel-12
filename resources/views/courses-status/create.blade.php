@@ -1,6 +1,8 @@
 <div>
     <h2>Cadastrar os status dos cursos!</h2>
 
+    <a href="{{ route('courses-status.index') }}">Listar</a><br><br>
+
     <form action="{{ route('courses-status.store') }}" method="POST">
         @csrf
         @method('POST')

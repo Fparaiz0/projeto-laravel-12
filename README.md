@@ -143,6 +143,14 @@ Desfar todas as migrations, executá-las novamente e rodar as seeds.
 php artisan migrate:fresh --seed
 ```
 
+Criar componente
+```
+php artisan make:component nome --view
+```
+```
+php artisan make:component alert --view
+```
+
 ## Como enviar e baixar os arquivos do GitHub
 
 - Criar o repositório **"projeto-laravel-12"** no GitHub.

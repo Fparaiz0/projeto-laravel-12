@@ -1,6 +1,8 @@
 <div>
     <h2>Cadastrar os módulos!</h2>
 
+    <a href="{{ route('modules.index') }}">Listar</a><br><br>
+
     <form action="{{ route('modules.store') }}" method="POST">
         @csrf
         @method('POST')

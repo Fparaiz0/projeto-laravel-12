@@ -1,6 +1,8 @@
 <div>
     <h2>Cadastrar os lotes dos cursos!</h2>
 
+    <a href="{{ route('courses-batches.index') }}">Listar</a><br><br>
+
     <form action="{{ route('courses-batches.store') }}" method="POST">
         @csrf
         @method('POST')

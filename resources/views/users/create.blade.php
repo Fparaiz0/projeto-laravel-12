@@ -1,6 +1,8 @@
 <div>
     <h2>Cadastrar os usuários!</h2>
 
+    <a href="{{ route('users.index') }}">Listar</a><br><br>
+
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         @method('POST')
