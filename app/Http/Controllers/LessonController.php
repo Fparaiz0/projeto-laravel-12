@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -18,5 +19,17 @@ class LessonController extends Controller
     {
         // Carregar a view
         return view('lessons.create');
+    }
+
+    // Cadastrar no banco de dados a nova aula.
+    public function store(Request $request)
+    {
+        // Cadastrar no banco de dados na tabela lessons.
+        Lesson::create([
+            'name' => $request->name,
+        ]);
+
+        // Redirecionar o usuário, enviar a mensagem de sucesso
+        return redirect()->route('lessons.index')->with('success', 'Usuário cadastrado com sucesso!');
     }
 }
