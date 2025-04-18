@@ -17,7 +17,14 @@ class CourseController extends Controller
         return view('courses.index', ['courses' => $courses]);
     }
 
-    //Carregar o formulário de cadastro novo curso.
+    // Visualizar os detalhes do curso.
+    public function show(Course $course)
+    {
+        // Carregar a view
+        return view('courses.show', ['course' => $course]);
+    }
+
+    // Carregar o formulário de cadastro novo curso.
     public function create()
     {
         // Carregar a view
