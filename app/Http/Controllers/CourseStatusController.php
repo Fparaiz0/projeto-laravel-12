@@ -17,6 +17,13 @@ class CourseStatusController extends Controller
         return view('courses-status.index', ['coursesStatuses' => $coursesStatuses]);
     }
 
+    // Visualizar os detalhes do curso.
+    public function show(CourseStatus $courseStatus)
+    {
+        // Carregar a view
+        return view('courses-status.show', ['courseStatus' => $courseStatus]);
+    }
+
     //Carregar o formulário de cadastro dos status do curso.
     public function create()
     {

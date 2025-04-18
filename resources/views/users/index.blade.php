@@ -11,7 +11,8 @@
     @forelse ($users as $user)
         ID: {{ $user->id }} <br>
         Nome: {{ $user->name }} <br>
-        Senha: {{ $user->password }} <br>
+        Email: {{ $user->email }} <br>
+        <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a>
         <hr>
     @empty
         

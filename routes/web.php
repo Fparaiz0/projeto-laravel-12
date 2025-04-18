@@ -21,6 +21,7 @@ Route::post('/store-course', [CourseController::class, 'store'])->name('courses.
 
 // Cursos Status
 Route::get('/index-course-status', [CourseStatusController::class, 'index'])->name('courses-status.index');
+Route::get('/show-course-status/{courseStatus}', [CourseStatusController::class, 'show'])->name('courses-status.show');
 Route::get('/create-course-status', [CourseStatusController::class, 'create'])->name('courses-status.create');
 Route::post('/store-course-status', [CourseStatusController::class, 'store'])->name('courses-status.store');
 
@@ -41,10 +42,11 @@ Route::post('/store-lessons', [LessonController::class, 'store'])->name('lessons
 
 // Usuários
 Route::get('/index-users', [UserController::class, 'index'])->name('users.index');
+Route::get('/show-users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::get('/create-users', [UserController::class, 'create'])->name('users.create');
 Route::post('/store-users', [UserController::class, 'store'])->name('users.store');
 
-// Usuários Status
+// Usuários Status  
 Route::get('/index-user-status', [UserStatusController::class, 'index'])->name('user-status.index');
 Route::get('/create-user-status', [UserStatusController::class, 'create'])->name('user-status.create');
 Route::post('/store-user-status', [UserStatusController::class, 'store'])->name('user-status.store');
