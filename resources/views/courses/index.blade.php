@@ -1,4 +1,6 @@
-<div>
+@extends('layouts.admin')
+
+@section('content')
     <h2>Listar os cursos!</h2>
 
 @if (@session('success'))
@@ -7,4 +9,4 @@
     </p>
 @endif
     <a href="{{ route('courses.create') }}">Cadastrar os cursos</a>
-</div>
+@endsection

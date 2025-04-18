@@ -1,4 +1,6 @@
-<div>
+@extends('layouts.admin')
+
+@section('content')
     <h2>Cadastrar os usuários!</h2>
 
     <a href="{{ route('users.index') }}">Listar</a><br><br>
@@ -18,4 +20,4 @@
 
         <button type="submit">Cadastrar</button>
     </form>
-</div>
+@endsection

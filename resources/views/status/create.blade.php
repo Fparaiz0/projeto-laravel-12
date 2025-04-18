@@ -1,4 +1,6 @@
-<div>
+@extends('layouts.admin')
+
+@section('content')
     <h2>Cadastrar os status!</h2>
 
     <a href="{{ route('status.index') }}">Listar</a><br><br>
@@ -11,4 +13,4 @@
         <input type="text" name="name" id="name" placeholder="Nome do usuário" required><br><br>
 
         <button type="submit">Cadastrar</button>
-</div>
+@endsection
