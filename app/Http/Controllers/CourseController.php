@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    // Listar os projetos 
+    // Listar os cursos 
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $courses = Course::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('courses.index');
+        return view('courses.index', ['courses' => $courses]);
     }
 
-    //Carregar o formulário de cadastro do usúario.
+    //Carregar o formulário de cadastro novo curso.
     public function create()
     {
         // Carregar a view

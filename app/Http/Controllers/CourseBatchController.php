@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 
 class CourseBatchController extends Controller
 {
-    // Listar os lotes do curso
+    // Listar as turmas do curso
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $coursesBatches = CourseBatch::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('courses-batches.index');
+        return view('courses-batches.index', ['coursesBatches' => $coursesBatches]);
     }
 
-    //Carregar o formulário de cadastro de lotes do curso.
+    //Carregar o formulário de cadastro de turmas do curso.
     public function create()
     {
         // Carregar a view

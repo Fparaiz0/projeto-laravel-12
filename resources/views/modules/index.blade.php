@@ -5,5 +5,14 @@
 
     <x-alert/> 
     
-    <a href="{{ route('modules.create') }}">Cadastrar</a>
+    <a href="{{ route('modules.create') }}">Cadastrar</a><br><br>
+
+    {{-- Imprimir os registros --}}
+    @forelse ($modules as $module)
+        ID: {{ $module->id }} <br>
+        Nome: {{ $module->name }} <br>
+        <hr>
+    @empty
+        
+    @endforelse
 @endsection

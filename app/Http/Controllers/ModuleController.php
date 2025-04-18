@@ -10,8 +10,11 @@ class ModuleController extends Controller
     // Listar os módulos
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $modules = Module::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('modules.index');
+        return view('modules.index', ['modules' => $modules]);
     }
 
     //Carregar o formulário de cadastro dos módulos.

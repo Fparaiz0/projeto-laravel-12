@@ -10,8 +10,11 @@ class StatusController extends Controller
     // Listar os status
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $statuses = Status::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('status.index');
+        return view('status.index', ['statuses' => $statuses]);
     }
 
     //Carregar o formulário de cadastro dos status.

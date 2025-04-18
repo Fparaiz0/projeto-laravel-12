@@ -9,13 +9,13 @@
 
 <body>
     
-    <a href="{{ route('courses.index') }}">Listar os cursos</a><br>
-    <a href="{{ route('courses-batches.index') }}">Listar os lotes dos cursos</a><br>
-    <a href="{{ route('courses-status.index') }}">Listar os status dos cursos</a><br>
-    <a href="{{ route('lessons.index') }}">Listar as aulas</a><br>
-    <a href="{{ route('modules.index') }}">Listar os módulos</a><br>
-    <a href="{{ route('status.index') }}">Listar os status</a><br>
-    <a href="{{ route('users.index') }}">Listar os usuários</a><br>
+    <a href="{{ route('courses.index') }}">Cursos</a><br>
+    <a href="{{ route('courses-batches.index') }}">Turmas</a><br>
+    <a href="{{ route('courses-status.index') }}">Status Curso</a><br>
+    <a href="{{ route('lessons.index') }}">Aulas</a><br>
+    <a href="{{ route('modules.index') }}">Módulos</a><br>
+    <a href="{{ route('status.index') }}">Status</a><br>
+    <a href="{{ route('users.index') }}">Usuário</a><br>
     @yield('content')
 
 </body>

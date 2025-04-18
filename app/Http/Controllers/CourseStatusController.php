@@ -10,8 +10,11 @@ class CourseStatusController extends Controller
     // Listar os status dos cursos
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $coursesStatuses = CourseStatus::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('courses-status.index');
+        return view('courses-status.index', ['coursesStatuses' => $coursesStatuses]);
     }
 
     //Carregar o formulário de cadastro dos status do curso.

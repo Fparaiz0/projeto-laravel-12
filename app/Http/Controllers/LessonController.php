@@ -10,8 +10,11 @@ class LessonController extends Controller
     // Listar as aulas
     public function index()
     {
+        // Recuperar os registros do banco de dados
+        $lessons = Lesson::orderBy('id', 'DESC')->get();
+
         // Carregar a view
-        return view('lessons.index');
+        return view('lessons.index', ['lessons' => $lessons]);
     }
 
     //Carregar o formulário de cadastro de aulas.
