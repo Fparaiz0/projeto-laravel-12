@@ -55,7 +55,7 @@ Iniciar o projeto  criado com Laravel.
 php artisan serve
 ```
 
-Executar as bibliotecas Node.js
+Executar as bibliotecas Node.js.
 ```
 npm run dev
 ```
@@ -67,12 +67,12 @@ http://127.0.0.1:8000
 
 ## Sequência para criar o projeto 
 
-Criar o projeto com laravel 
+Criar o projeto com laravel.
 ```
 Composer create-project laravel/laravel . 
 ```
 
-Iniciar o projeto criado com laravel
+Iniciar o projeto criado com laravel.
 ```
 php artisan serve
 ``` 
@@ -82,12 +82,12 @@ Instalar as dependências do Node.js.
 npm install
 ```
 
-Executar as bibliotecas Node.js
+Executar as bibliotecas Node.js.
 ```
 npm run dev
 ```
 
-Acessar o conteúdo padrão do Laravel 
+Acessar o conteúdo padrão do Laravel.
 ```
 http://127.0.0.1:8000
 ```
@@ -138,12 +138,12 @@ Desfazer todas as migrations e executá-las novamente.
 php artisan migrate:fresh
 ```
 
-Desfar todas as migrations, executá-las novamente e rodar as seeds.
+Desfazer todas as migrations, executá-las novamente e rodar as seeds.
 ```
 php artisan migrate:fresh --seed
 ```
 
-Criar componente
+Criar componente.
 ```
 php artisan make:component nome --view
 ```
