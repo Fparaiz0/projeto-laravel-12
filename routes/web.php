@@ -27,6 +27,7 @@ Route::post('/store-course-status', [CourseStatusController::class, 'store'])->n
 
 // Turmas
 Route::get('/index-course-batches', [CourseBatchController::class, 'index'])->name('courses-batches.index');
+Route::get('/show-course-batches/{courseBatch}', [CourseBatchController::class, 'show'])->name('courses-batches.show');
 Route::get('/create-course-batches', [CourseBatchController::class, 'create'])->name('courses-batches.create');
 Route::post('/store-course-batches', [CourseBatchController::class, 'store'])->name('courses-batches.store');
 

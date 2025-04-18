@@ -17,6 +17,13 @@ class CourseBatchController extends Controller
         return view('courses-batches.index', ['coursesBatches' => $coursesBatches]);
     }
 
+    // Visualizar os detalhes do curso.
+    public function show(CourseBatch $courseBatch)
+    {
+        // Carregar a view
+        return view('courses-batches.show', ['courseBatch' => $courseBatch]);
+    }
+
     //Carregar o formulário de cadastro de turmas do curso.
     public function create()
     {
