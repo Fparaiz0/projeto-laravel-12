@@ -50,6 +50,9 @@ Route::prefix('course-statuses')->group(function () {
     Route::get('/create', [CourseStatusController::class, 'create'])->name('course_statuses.create');
     Route::get('/{courseStatus}', [CourseStatusController::class, 'show'])->name('course_statuses.show');
     Route::post('/', [CourseStatusController::class, 'store'])->name('course_statuses.store');
+    Route::get('/{courseStatus}/edit', [CourseStatusController::class, 'edit'])->name('course_statuses.edit');
+    Route::put('/{courseStatus}', [CourseStatusController::class, 'update'])->name('course_statuses.update');
+    Route::delete('/{courseStatus}', [CourseStatusController::class, 'destroy'])->name('course_statuses.destroy');
 });
 // Turmas
 Route::prefix('course-batches')->group(function () {

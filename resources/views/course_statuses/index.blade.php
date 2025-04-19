@@ -11,7 +11,8 @@
     @forelse ($coursesStatuses as $courseStatus)
         ID: {{ $courseStatus->id }} <br>
         Nome: {{ $courseStatus->name }} <br>
-        <a href="{{ route('course_statuses.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a>
+        <a href="{{ route('course_statuses.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a><br>
+        <a href="{{ route('course_statuses.edit', ['courseStatus' => $courseStatus->id]) }}">Editar</a><br>
         <hr>
     @empty
         
