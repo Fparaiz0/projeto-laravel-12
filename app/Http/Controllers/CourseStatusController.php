@@ -17,7 +17,7 @@ class CourseStatusController extends Controller
         return view('courses-status.index', ['coursesStatuses' => $coursesStatuses]);
     }
 
-    // Visualizar os detalhes do curso.
+    // Visualizar os detalhes do status do curso.
     public function show(CourseStatus $courseStatus)
     {
         // Carregar a view

@@ -17,6 +17,13 @@ class LessonController extends Controller
         return view('lessons.index', ['lessons' => $lessons]);
     }
 
+    // Visualizar os detalhes da aula.
+    public function show(Lesson $lesson)
+    {
+        // Carregar a view
+        return view('lessons.show', ['lesson' => $lesson]);
+    }
+
     //Carregar o formulário de cadastro de aulas.
     public function create()
     {

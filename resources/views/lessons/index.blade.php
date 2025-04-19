@@ -11,6 +11,7 @@
     @forelse ($lessons as $lesson)
         ID: {{ $lesson->id }} <br>
         Nome: {{ $lesson->name }} <br>
+        <a href="{{ route('lessons.show', ['lesson' => $lesson->id]) }}">Visualizar</a>
         <hr>
     @empty
         

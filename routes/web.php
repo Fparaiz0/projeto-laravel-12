@@ -7,6 +7,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
+use App\Models\Lesson;
 use App\Models\Module;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,7 @@ Route::post('/store-modules', [ModuleController::class, 'store'])->name('modules
 
 // Aulas
 Route::get('/index-lessons', [LessonController::class, 'index'])->name('lessons.index');
+Route::get('/show-lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
 Route::get('/create-lessons', [LessonController::class, 'create'])->name('lessons.create');
 Route::post('/store-lessons', [LessonController::class, 'store'])->name('lessons.store');
 

@@ -17,7 +17,7 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
-    // Visualizar os detalhes do curso.
+    // Visualizar os detalhes do usuário.
     public function show(User $user)
     {
         // Carregar a view

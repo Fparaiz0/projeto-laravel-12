@@ -17,7 +17,7 @@ class ModuleController extends Controller
         return view('modules.index', ['modules' => $modules]);
     }
 
-    // Visualizar os detalhes do curso.
+    // Visualizar os detalhes do módulo.
     public function show(Module $module)
     {
         // Carregar a view
