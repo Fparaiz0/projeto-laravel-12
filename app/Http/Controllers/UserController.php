@@ -58,7 +58,7 @@ class UserController extends Controller
         return view('users.edit', ['user' => $user]);
     }
 
-    // Editar o curso no banco de dados.
+    // Editar o usuário no banco de dados.
     public function update(Request $request, User $user)
     {
         try {

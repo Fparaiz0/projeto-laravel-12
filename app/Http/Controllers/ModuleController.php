@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
+use Exception;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -34,12 +35,41 @@ class ModuleController extends Controller
     // Cadastrar no banco de dados o novo módulo.
     public function store(Request $request)
     {
-        // Cadastrar no banco de dados na tabela modules.
-        Module::create([
-            'name' => $request->name,
-        ]);
+        try {
+            // Cadastrar no banco de dados na tabela modules.
+            Module::create([
+                'name' => $request->name,
+            ]);
 
-        // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('modules.index')->with('success', 'Módulo cadastrado com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('modules.index')->with('success', 'Módulo cadastrado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Erro ao cadastrar o módulo!');
+        }
+    }
+
+    // Carregar o formulário de edição do módulo.
+    public function edit(Module $module)
+    {
+        // Carregar a view
+        return view('modules.edit', ['module' => $module]);
+    }
+
+    // Editar o módulo no banco de dados.
+    public function update(Request $request, Module $module)
+    {
+        try {
+            // Editar as informações do registro no banco de dados.
+            $module->update([
+                'name' => $request->name,
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('modules.show', ['module' => $module->id])->with('success', 'Usuário atualizado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao atualizar o usuário!');
+        }
     }
 }

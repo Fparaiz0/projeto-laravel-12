@@ -56,7 +56,7 @@ class CourseBatchController extends Controller
         return view('course_batches.edit', ['courseBatch' => $courseBatch]);
     }
 
-    // Editar o status do usuário no banco de dados.
+    // Editar a turma no banco de dados.
     public function update(Request $request, CourseBatch $courseBatch)
     {
         try {

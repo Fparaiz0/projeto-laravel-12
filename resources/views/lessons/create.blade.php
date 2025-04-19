@@ -5,6 +5,8 @@
 
     <a href="{{ route('lessons.index') }}">Listar</a><br><br>
 
+    <x-alert />
+
     <form action="{{ route('lessons.store') }}" method="POST">
         @csrf
         @method('POST')

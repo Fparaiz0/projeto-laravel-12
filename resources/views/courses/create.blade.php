@@ -2,10 +2,10 @@
 
 @section('content')
     <h2>Cadastrar os cursos!</h2>
+    
+    <x-alert/>
 
     <a href="{{ route('courses.index') }}">Listar</a><br>
-
-    <x-alert/>
 
     <form action="{{ route('courses.store') }}" method="POST">
         @csrf

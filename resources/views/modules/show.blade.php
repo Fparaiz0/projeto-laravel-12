@@ -5,7 +5,8 @@
 
     <x-alert/>
     
-    <a href="{{ route('modules.index') }}">Listar</a><br><br>
+    <a href="{{ route('modules.index') }}">Listar</a><br>
+    <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $module->id }} <br>

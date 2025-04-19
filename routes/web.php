@@ -70,6 +70,9 @@ Route::prefix('modules')->group(function () {
     Route::get('/create', [ModuleController::class, 'create'])->name('modules.create');
     Route::get('/{module}', [ModuleController::class, 'show'])->name('modules.show');
     Route::post('/', [ModuleController::class, 'store'])->name('modules.store');
+    Route::get('/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
+    Route::put('/{module}', [ModuleController::class, 'update'])->name('modules.update');
+    Route::delete('/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy');
 });
 // Aulas
 Route::prefix('lessons')->group(function () {

@@ -56,7 +56,7 @@ class CourseStatusController extends Controller
         return view('course_statuses.edit', ['courseStatus' => $courseStatus]);
     }
 
-    // Editar o status do usuário no banco de dados.
+    // Editar o status do curso no banco de dados.
     public function update(Request $request, CourseStatus $courseStatus)
     {
         try {
