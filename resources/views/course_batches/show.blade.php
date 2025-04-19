@@ -5,7 +5,7 @@
 
     <x-alert/>
     
-    <a href="{{ route('courses-batches.index') }}">Listar</a><br><br>
+    <a href="{{ route('course_batches.index') }}">Listar</a><br><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $courseBatch->id }} <br>

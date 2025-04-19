@@ -3,9 +3,9 @@
 @section('content')
     <h2>Cadastrar as turmas dos cursos!</h2>
 
-    <a href="{{ route('courses-batches.index') }}">Listar</a><br><br>
+    <a href="{{ route('course_batches.index') }}">Listar</a><br><br>
 
-    <form action="{{ route('courses-batches.store') }}" method="POST">
+    <form action="{{ route('course_batches.store') }}" method="POST">
         @csrf
         @method('POST')
 

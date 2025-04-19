@@ -3,9 +3,9 @@
 @section('content')
     <h2>Cadastrar os status!</h2>
 
-    <a href="{{ route('user-status.index') }}">Listar</a><br><br>
+    <a href="{{ route('user_statuses.index') }}">Listar</a><br><br>
 
-    <form action="{{ route('user-status.store') }}" method="POST">
+    <form action="{{ route('user_statuses.store') }}" method="POST">
         @csrf
         @method('POST')
 

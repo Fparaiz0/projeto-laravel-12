@@ -14,43 +14,51 @@ Route::get('/', function () {
 });
 
 // Cursos 
-Route::get('/index-course', [CourseController::class, 'index'])->name('courses.index');
-Route::get('/show-course/{course}', [CourseController::class, 'show'])->name('courses.show');
-Route::get('/create-course', [CourseController::class, 'create'])->name('courses.create');
-Route::post('/store-course', [CourseController::class, 'store'])->name('courses.store');
-
+Route::prefix('courses')->group(function () {
+    Route::get('/', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::get('/{course}', [CourseController::class, 'show'])->name('courses.show');
+    Route::post('/', [CourseController::class, 'store'])->name('courses.store');
+});
 // Cursos Status
-Route::get('/index-course-status', [CourseStatusController::class, 'index'])->name('courses-status.index');
-Route::get('/show-course-status/{courseStatus}', [CourseStatusController::class, 'show'])->name('courses-status.show');
-Route::get('/create-course-status', [CourseStatusController::class, 'create'])->name('courses-status.create');
-Route::post('/store-course-status', [CourseStatusController::class, 'store'])->name('courses-status.store');
-
+Route::prefix('course-statuses')->group(function () {
+    Route::get('/', [CourseStatusController::class, 'index'])->name('course_statuses.index');
+    Route::get('/create', [CourseStatusController::class, 'create'])->name('course_statuses.create');
+    Route::get('/{courseStatus}', [CourseStatusController::class, 'show'])->name('course_statuses.show');
+    Route::post('/', [CourseStatusController::class, 'store'])->name('course_statuses.store');
+});
 // Turmas
-Route::get('/index-course-batches', [CourseBatchController::class, 'index'])->name('courses-batches.index');
-Route::get('/show-course-batches/{courseBatch}', [CourseBatchController::class, 'show'])->name('courses-batches.show');
-Route::get('/create-course-batches', [CourseBatchController::class, 'create'])->name('courses-batches.create');
-Route::post('/store-course-batches', [CourseBatchController::class, 'store'])->name('courses-batches.store');
-
+Route::prefix('course-batches')->group(function () {
+    Route::get('/', [CourseBatchController::class, 'index'])->name('course_batches.index');
+    Route::get('/create', [CourseBatchController::class, 'create'])->name('course_batches.create');
+    Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show');
+    Route::post('/', [CourseBatchController::class, 'store'])->name('course_batches.store');
+});
 // Modulos
-Route::get('/index-modules', [ModuleController::class, 'index'])->name('modules.index');
-Route::get('/show-modules/{module}', [ModuleController::class, 'show'])->name('modules.show');
-Route::get('/create-modules', [ModuleController::class, 'create'])->name('modules.create');
-Route::post('/store-modules', [ModuleController::class, 'store'])->name('modules.store');
-
+Route::prefix('modules')->group(function () {
+    Route::get('/', [ModuleController::class, 'index'])->name('modules.index');
+    Route::get('/create', [ModuleController::class, 'create'])->name('modules.create');
+    Route::get('/{module}', [ModuleController::class, 'show'])->name('modules.show');
+    Route::post('/', [ModuleController::class, 'store'])->name('modules.store');
+});
 // Aulas
-Route::get('/index-lessons', [LessonController::class, 'index'])->name('lessons.index');
-Route::get('/show-lessons/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
-Route::get('/create-lessons', [LessonController::class, 'create'])->name('lessons.create');
-Route::post('/store-lessons', [LessonController::class, 'store'])->name('lessons.store');
-
+Route::prefix('lessons')->group(function () {
+    Route::get('/', [LessonController::class, 'index'])->name('lessons.index');
+    Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
+    Route::get('/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
+    Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
+});
 // Usuários
-Route::get('/index-users', [UserController::class, 'index'])->name('users.index');
-Route::get('/show-users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/create-users', [UserController::class, 'create'])->name('users.create');
-Route::post('/store-users', [UserController::class, 'store'])->name('users.store');
-
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::post('/', [UserController::class, 'store'])->name('users.store');
+});
 // Usuários Status  
-Route::get('/index-user-status', [UserStatusController::class, 'index'])->name('user-status.index');
-Route::get('/show-user-status/{userStatus}', [UserStatusController::class, 'show'])->name('user-status.show');
-Route::get('/create-user-status', [UserStatusController::class, 'create'])->name('user-status.create');
-Route::post('/store-user-status', [UserStatusController::class, 'store'])->name('user-status.store');
+Route::prefix('user-statuses')->group(function () {
+    Route::get('/', [UserStatusController::class, 'index'])->name('user_statuses.index');
+    Route::get('/create', [UserStatusController::class, 'create'])->name('user_statuses.create');
+    Route::get('/{userStatus}', [UserStatusController::class, 'show'])->name('user_statuses.show');
+    Route::post('/', [UserStatusController::class, 'store'])->name('user_statuses.store');
+});

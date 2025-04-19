@@ -14,21 +14,21 @@ class CourseBatchController extends Controller
         $coursesBatches = CourseBatch::orderBy('id', 'DESC')->get();
 
         // Carregar a view
-        return view('courses-batches.index', ['coursesBatches' => $coursesBatches]);
+        return view('course_batches.index', ['coursesBatches' => $coursesBatches]);
     }
 
     // Visualizar os detalhes das turmas.
     public function show(CourseBatch $courseBatch)
     {
         // Carregar a view
-        return view('courses-batches.show', ['courseBatch' => $courseBatch]);
+        return view('course_batches.show', ['courseBatch' => $courseBatch]);
     }
 
     //Carregar o formulário de cadastro de turmas do curso.
     public function create()
     {
         // Carregar a view
-        return view('courses-batches.create');
+        return view('course_batches.create');
     }
 
     // Cadastrar no banco de dados o status do curso.
@@ -40,6 +40,6 @@ class CourseBatchController extends Controller
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('courses-batches.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('course_batches.index')->with('success', 'Turma cadastrada com sucesso!');
     }
 }

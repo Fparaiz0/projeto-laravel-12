@@ -14,21 +14,21 @@ class UserStatusController extends Controller
         $userStatuses = UserStatus::orderBy('id', 'DESC')->get();
 
         // Carregar a view
-        return view('user-status.index', ['userStatuses' => $userStatuses]);
+        return view('user_statuses.index', ['userStatuses' => $userStatuses]);
     }
 
     // Visualizar os detalhes do status do usuário.
     public function show(UserStatus $userStatus)
     {
         // Carregar a view
-        return view('user-status.show', ['userStatus' => $userStatus]);
+        return view('user_statuses.show', ['userStatus' => $userStatus]);
     }
 
     //Carregar o formulário de cadastro dos status.
     public function create()
     {
         // Carregar a view
-        return view('user-status.create');
+        return view('user_statuses.create');
     }
 
     // Cadastrar no banco de dados o novo status.
@@ -40,6 +40,6 @@ class UserStatusController extends Controller
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('user-status.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('user_statuses.index')->with('success', 'Status do usuário cadastrado com sucesso!');
     }
 }

@@ -40,6 +40,6 @@ class LessonController extends Controller
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('lessons.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('lessons.index')->with('success', 'Aula cadastrada com sucesso!');
     }
 }

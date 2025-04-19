@@ -5,13 +5,13 @@
 
     <x-alert/>
     
-    <a href="{{ route('courses-status.create') }}">Cadastrar</a><br><br>
+    <a href="{{ route('course_statuses.create') }}">Cadastrar</a><br><br>
 
     {{-- Imprimir os registros --}}
     @forelse ($coursesStatuses as $courseStatus)
         ID: {{ $courseStatus->id }} <br>
         Nome: {{ $courseStatus->name }} <br>
-        <a href="{{ route('courses-status.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a>
+        <a href="{{ route('course_statuses.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a>
         <hr>
     @empty
         

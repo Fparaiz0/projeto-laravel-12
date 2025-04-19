@@ -14,21 +14,21 @@ class CourseStatusController extends Controller
         $coursesStatuses = CourseStatus::orderBy('id', 'DESC')->get();
 
         // Carregar a view
-        return view('courses-status.index', ['coursesStatuses' => $coursesStatuses]);
+        return view('course_statuses.index', ['coursesStatuses' => $coursesStatuses]);
     }
 
     // Visualizar os detalhes do status do curso.
     public function show(CourseStatus $courseStatus)
     {
         // Carregar a view
-        return view('courses-status.show', ['courseStatus' => $courseStatus]);
+        return view('course_statuses.show', ['courseStatus' => $courseStatus]);
     }
 
     //Carregar o formulário de cadastro dos status do curso.
     public function create()
     {
         // Carregar a view
-        return view('courses-status.create');
+        return view('course_statuses.create');
     }
 
     // Cadastrar no banco de dados o status do curso.
@@ -40,6 +40,6 @@ class CourseStatusController extends Controller
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('courses-status.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('course_statuses.index')->with('success', 'Status do curso cadastrado com sucesso!');
     }
 }

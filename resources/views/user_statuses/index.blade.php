@@ -5,13 +5,13 @@
 
     <x-alert/>
 
-    <a href="{{ route('user-status.create') }}">Cadastrar</a><br><br>
+    <a href="{{ route('user_statuses.create') }}">Cadastrar</a><br><br>
 
     {{-- Imprimir os registros --}}
     @forelse ($userStatuses as $userStatus)
         ID: {{ $userStatus->id }} <br>
         Nome: {{ $userStatus->name }} <br>
-       <a href="{{ route('user-status.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a>  
+       <a href="{{ route('user_statuses.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a>  
         <hr>
     @empty
         

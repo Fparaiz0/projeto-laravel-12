@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserStatus extends Model
 {
     //Indicar o nome da tabela no banco de dados. 
-    protected $table = 'statuses';
+    protected $table = 'user_statuses';
     //Indicar quais colunas podem ser manipuladas. 
     protected $fillable = ['name'];
 }

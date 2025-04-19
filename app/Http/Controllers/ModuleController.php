@@ -40,6 +40,6 @@ class ModuleController extends Controller
         ]);
 
         // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('modules.index')->with('success', 'Usuário cadastrado com sucesso!');
+        return redirect()->route('modules.index')->with('success', 'Módulo cadastrado com sucesso!');
     }
 }
