@@ -60,6 +60,9 @@ Route::prefix('course-batches')->group(function () {
     Route::get('/create', [CourseBatchController::class, 'create'])->name('course_batches.create');
     Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show');
     Route::post('/', [CourseBatchController::class, 'store'])->name('course_batches.store');
+    Route::get('/{courseBatch}/edit', [CourseBatchController::class, 'edit'])->name('course_batches.edit');
+    Route::put('/{courseBatch}', [CourseBatchController::class, 'update'])->name('course_batches.update');
+    Route::delete('/{courseBatch}', [CourseBatchController::class, 'destroy'])->name('course_batches.destroy');
 });
 // Modulos
 Route::prefix('modules')->group(function () {
