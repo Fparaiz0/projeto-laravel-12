@@ -19,6 +19,9 @@ Route::prefix('users')->group(function () {
     Route::get('/create', [UserController::class, 'create'])->name('users.create');
     Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
     Route::post('/', [UserController::class, 'store'])->name('users.store');
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 // Usuários Status  
 Route::prefix('user-statuses')->group(function () {
