@@ -12,7 +12,7 @@
         ID: {{ $user->id }} <br>
         Nome: {{ $user->name }} <br>
         Email: {{ $user->email }} <br>
-        <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a>
+        <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a><br>
         <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a>
         <hr>
     @empty
