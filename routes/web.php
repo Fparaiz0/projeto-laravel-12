@@ -7,6 +7,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
+use App\Models\Module;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +34,7 @@ Route::post('/store-course-batches', [CourseBatchController::class, 'store'])->n
 
 // Modulos
 Route::get('/index-modules', [ModuleController::class, 'index'])->name('modules.index');
+Route::get('/show-modules/{module}', [ModuleController::class, 'show'])->name('modules.show');
 Route::get('/create-modules', [ModuleController::class, 'create'])->name('modules.create');
 Route::post('/store-modules', [ModuleController::class, 'store'])->name('modules.store');
 

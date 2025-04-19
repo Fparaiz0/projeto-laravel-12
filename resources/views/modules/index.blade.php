@@ -11,6 +11,7 @@
     @forelse ($modules as $module)
         ID: {{ $module->id }} <br>
         Nome: {{ $module->name }} <br>
+        <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a>
         <hr>
     @empty
         
