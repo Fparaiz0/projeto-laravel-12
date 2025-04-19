@@ -12,6 +12,7 @@
         ID: {{ $userStatus->id }} <br>
         Nome: {{ $userStatus->name }} <br>
        <a href="{{ route('user_statuses.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a>  
+       <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
         <hr>
     @empty
         

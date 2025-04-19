@@ -29,6 +29,9 @@ Route::prefix('user-statuses')->group(function () {
     Route::get('/create', [UserStatusController::class, 'create'])->name('user_statuses.create');
     Route::get('/{userStatus}', [UserStatusController::class, 'show'])->name('user_statuses.show');
     Route::post('/', [UserStatusController::class, 'store'])->name('user_statuses.store');
+    Route::get('/{userStatus}/edit', [UserStatusController::class, 'edit'])->name('user_statuses.edit');
+    Route::put('/{userStatus}', [UserStatusController::class, 'update'])->name('user_statuses.update');
+    Route::delete('/{userStatus}', [UserStatusController::class, 'destroy'])->name('user_statuses.destroy');
 });
 
 // Cursos 

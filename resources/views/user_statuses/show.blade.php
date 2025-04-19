@@ -5,7 +5,8 @@
 
     <x-alert/>
     
-    <a href="{{ route('user_statuses.index') }}">Listar</a><br><br>
+    <a href="{{ route('user_statuses.index') }}">Listar</a><br>
+    <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $userStatus->id }} <br>

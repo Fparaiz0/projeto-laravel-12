@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserStatus;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserStatusController extends Controller
@@ -34,12 +35,41 @@ class UserStatusController extends Controller
     // Cadastrar no banco de dados o novo status.
     public function store(Request $request)
     {
-        // Cadastrar no banco de dados na tabela statuses.
-        UserStatus::create([
-            'name' => $request->name,
-        ]);
+        try {
+            // Cadastrar no banco de dados na tabela statuses.
+            UserStatus::create([
+                'name' => $request->name,
+            ]);
 
-        // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('user_statuses.index')->with('success', 'Status do usuário cadastrado com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('user_statuses.index')->with('success', 'Status do usuário cadastrado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao cadastrar o status do usuário!');
+        }
+    }
+
+    // Carregar o formulário de edição do status do usuário.
+    public function edit(UserStatus $userStatus)
+    {
+        // Carregar a view
+        return view('user_statuses.edit', ['userStatus' => $userStatus]);
+    }
+
+    // Editar o status do usuário no banco de dados.
+    public function update(Request $request, UserStatus $userStatus)
+    {
+        try {
+            // Editar as informações do registro no banco de dados.
+            $userStatus->update([
+                'name' => $request->name,
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('user_statuses.show', ['userStatus' => $userStatus->id])->with('success', 'Status do usuário atualizado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao atualizar o status do usuário!');
+        }
     }
 }
