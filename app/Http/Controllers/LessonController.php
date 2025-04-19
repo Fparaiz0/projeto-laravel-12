@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lesson;
+use Exception;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -34,12 +35,41 @@ class LessonController extends Controller
     // Cadastrar no banco de dados a nova aula.
     public function store(Request $request)
     {
-        // Cadastrar no banco de dados na tabela lessons.
-        Lesson::create([
-            'name' => $request->name,
-        ]);
+        try {
+            // Cadastrar no banco de dados na tabela lessons.
+            Lesson::create([
+                'name' => $request->nme,
+            ]);
 
-        // Redirecionar o usuário, enviar a mensagem de sucesso
-        return redirect()->route('lessons.index')->with('success', 'Aula cadastrada com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('lessons.index')->with('success', 'Aula cadastrada com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Erro ao cadastrar a aula!');
+        }
+    }
+
+    // Carregar o formulário de edição das aulas.
+    public function edit(Lesson $lesson)
+    {
+        // Carregar a view
+        return view('lessons.edit', ['lesson' => $lesson]);
+    }
+
+    // Editar a aula no banco de dados.
+    public function update(Request $request, Lesson $lesson)
+    {
+        try {
+            // Editar as informações do registro no banco de dados.
+            $lesson->update([
+                'name' => $request->nme,
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('lessons.show', ['lesson' => $lesson->id])->with('success', 'Aula atualizada com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao atualizar a aula!');
+        }
     }
 }

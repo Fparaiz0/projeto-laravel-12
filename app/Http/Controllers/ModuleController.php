@@ -66,10 +66,10 @@ class ModuleController extends Controller
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('modules.show', ['module' => $module->id])->with('success', 'Usuário atualizado com sucesso!');
+            return redirect()->route('modules.show', ['module' => $module->id])->with('success', 'Módulo atualizado com sucesso!');
         } catch (Exception $e) {
             // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao atualizar o usuário!');
+            return back()->withInput()->with('error', 'Erro ao atualizar o módulo!');
         }
     }
 }

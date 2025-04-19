@@ -66,10 +66,10 @@ class CourseStatusController extends Controller
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status do usuário atualizado com sucesso!');
+            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status do curso atualizado com sucesso!');
         } catch (Exception $e) {
             // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao atualizar o status do usuário!');
+            return back()->withInput()->with('error', 'Erro ao atualizar o status do curso!');
         }
     }
 }

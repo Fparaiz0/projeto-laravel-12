@@ -80,4 +80,7 @@ Route::prefix('lessons')->group(function () {
     Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
     Route::get('/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
     Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
+    Route::get('/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
+    Route::put('/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
+    Route::delete('/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
 });
