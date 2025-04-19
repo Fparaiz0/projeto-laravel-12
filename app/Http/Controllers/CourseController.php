@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use Exception;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -34,12 +35,41 @@ class CourseController extends Controller
     //Cadastrar no banco de dados o novo curso.
     public function store(Request $request)
     {
-        //Cadastrar no banco de dados na tabela cursos.
-        Course::create([
-            'name' => $request->name
-        ]);
+        try {
+            //Cadastrar no banco de dados na tabela cursos.
+            $course = Course::create([
+                'name' => $request->name
+            ]);
 
-        //Redicionar o usuário, enviar a mensagem de sucesso. 
-        return redirect()->route('courses.index')->with('success', 'Curso cadastrado com sucesso!');
+            //Redicionar o usuário, enviar a mensagem de sucesso. 
+            return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso cadastrado com sucesso!');
+        } catch (Exception $e) {
+            //Redicionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao cadastrar o curso!');
+        }
+    }
+
+    // Carregar o formulário de edição do curso.
+    public function edit(Course $course)
+    {
+        // Carregar a view
+        return view('courses.edit', ['course' => $course]);
+    }
+
+    // Editar o curso no banco de dados.
+    public function update(Request $request, Course $course)
+    {
+        try {
+            // Editar as informações do registro no banco de dados.
+            $course->update([
+                'name' => $request->name
+            ]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso atualizado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao atualizar o curso!');
+        }
     }
 }

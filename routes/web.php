@@ -13,12 +13,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Usuários
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::post('/', [UserController::class, 'store'])->name('users.store');
+});
+// Usuários Status  
+Route::prefix('user-statuses')->group(function () {
+    Route::get('/', [UserStatusController::class, 'index'])->name('user_statuses.index');
+    Route::get('/create', [UserStatusController::class, 'create'])->name('user_statuses.create');
+    Route::get('/{userStatus}', [UserStatusController::class, 'show'])->name('user_statuses.show');
+    Route::post('/', [UserStatusController::class, 'store'])->name('user_statuses.store');
+});
+
 // Cursos 
 Route::prefix('courses')->group(function () {
     Route::get('/', [CourseController::class, 'index'])->name('courses.index');
     Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
     Route::get('/{course}', [CourseController::class, 'show'])->name('courses.show');
     Route::post('/', [CourseController::class, 'store'])->name('courses.store');
+    Route::get('/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('/{course}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
 // Cursos Status
 Route::prefix('course-statuses')->group(function () {
@@ -47,18 +65,4 @@ Route::prefix('lessons')->group(function () {
     Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
     Route::get('/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
     Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
-});
-// Usuários
-Route::prefix('users')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('users.index');
-    Route::get('/create', [UserController::class, 'create'])->name('users.create');
-    Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::post('/', [UserController::class, 'store'])->name('users.store');
-});
-// Usuários Status  
-Route::prefix('user-statuses')->group(function () {
-    Route::get('/', [UserStatusController::class, 'index'])->name('user_statuses.index');
-    Route::get('/create', [UserStatusController::class, 'create'])->name('user_statuses.create');
-    Route::get('/{userStatus}', [UserStatusController::class, 'show'])->name('user_statuses.show');
-    Route::post('/', [UserStatusController::class, 'store'])->name('user_statuses.store');
 });
