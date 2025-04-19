@@ -1,0 +1,16 @@
+@extends('layouts.admin')
+
+@section('content')
+    <h2>Detalhes do status do usuário</h2>
+
+    <x-alert/>
+    
+    <a href="{{ route('user-status.index') }}">Listar</a><br><br>
+
+    {{-- Imprimir os registros --}}
+        ID: {{ $userStatus->id }} <br>
+        Nome: {{ $userStatus->name }} <br>
+        Data de cadastro: {{ \Carbon\Carbon::parse($userStatus->created_at)-> format('d/m/Y H:i:s')}} <br>
+        Data de atualização: {{ \Carbon\Carbon::parse($userStatus->updated_at)-> format('d/m/Y H:i:s')}} <br>
+        
+@endsection

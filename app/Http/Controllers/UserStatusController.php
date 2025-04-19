@@ -11,10 +11,17 @@ class UserStatusController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $statuses = UserStatus::orderBy('id', 'DESC')->get();
+        $userStatuses = UserStatus::orderBy('id', 'DESC')->get();
 
         // Carregar a view
-        return view('user-status.index', ['statuses' => $statuses]);
+        return view('user-status.index', ['userStatuses' => $userStatuses]);
+    }
+
+    // Visualizar os detalhes do status do usuário.
+    public function show(UserStatus $userStatus)
+    {
+        // Carregar a view
+        return view('user-status.show', ['userStatus' => $userStatus]);
     }
 
     //Carregar o formulário de cadastro dos status.

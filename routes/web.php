@@ -7,8 +7,6 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
-use App\Models\Lesson;
-use App\Models\Module;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -53,5 +51,6 @@ Route::post('/store-users', [UserController::class, 'store'])->name('users.store
 
 // Usuários Status  
 Route::get('/index-user-status', [UserStatusController::class, 'index'])->name('user-status.index');
+Route::get('/show-user-status/{userStatus}', [UserStatusController::class, 'show'])->name('user-status.show');
 Route::get('/create-user-status', [UserStatusController::class, 'create'])->name('user-status.create');
 Route::post('/store-user-status', [UserStatusController::class, 'store'])->name('user-status.store');
