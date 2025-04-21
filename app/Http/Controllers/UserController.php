@@ -65,8 +65,7 @@ class UserController extends Controller
             // Editar as informações do registro no banco de dados.
             $user->update([
                 'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password
+                'email' => $request->email
             ]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso.

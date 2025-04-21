@@ -18,9 +18,6 @@
         <label>Email: </label>
         <input type="email" name="email" id="email" placeholder="Email do usuário" value=" {{ old('email', $user->email) }} " required><br><br>
 
-        <label>Senha: </label>
-        <input type="password" name="password" id="password" placeholder="Senha" value=" {{ old('password', $user->password) }} " required><br><br>
-
         <button type="submit">Salvar</button>
     </form>
 @endsection
