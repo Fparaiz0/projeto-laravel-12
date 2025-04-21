@@ -24,4 +24,8 @@
     @empty
         Nenhum registro encontrado!
     @endforelse
+    
+    {{-- Paginação --}}
+    {{ $users->links() }}
+
 @endsection

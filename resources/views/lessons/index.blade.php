@@ -23,4 +23,7 @@
     @empty
         Nenhum registro encontrado!
     @endforelse
+
+    {{-- Paginação --}}
+    {{ $lessons->links() }}
 @endsection

@@ -12,7 +12,7 @@ class UserStatusController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $userStatuses = UserStatus::orderBy('id', 'DESC')->get();
+        $userStatuses = UserStatus::orderBy('id', 'DESC')->paginate(10);
 
         // Carregar a view
         return view('user_statuses.index', ['userStatuses' => $userStatuses]);

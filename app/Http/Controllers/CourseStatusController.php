@@ -12,7 +12,7 @@ class CourseStatusController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $coursesStatuses = CourseStatus::orderBy('id', 'DESC')->get();
+        $coursesStatuses = CourseStatus::orderBy('id', 'DESC')->paginate(10);
 
         // Carregar a view
         return view('course_statuses.index', ['coursesStatuses' => $coursesStatuses]);

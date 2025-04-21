@@ -12,7 +12,7 @@ class LessonController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $lessons = Lesson::orderBy('id', 'DESC')->get();
+        $lessons = Lesson::orderBy('id', 'DESC')->paginate(10);
 
         // Carregar a view
         return view('lessons.index', ['lessons' => $lessons]);

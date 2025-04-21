@@ -12,7 +12,7 @@ class ModuleController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $modules = Module::orderBy('id', 'DESC')->get();
+        $modules = Module::orderBy('id', 'DESC')->paginate(10);
 
         // Carregar a view
         return view('modules.index', ['modules' => $modules]);

@@ -12,7 +12,7 @@ class CourseBatchController extends Controller
     public function index()
     {
         // Recuperar os registros do banco de dados
-        $coursesBatches = CourseBatch::orderBy('id', 'DESC')->get();
+        $coursesBatches = CourseBatch::orderBy('id', 'DESC')->paginate(10);
 
         // Carregar a view
         return view('course_batches.index', ['coursesBatches' => $coursesBatches]);
