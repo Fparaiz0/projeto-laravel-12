@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LessonRequest;
 use App\Models\Lesson;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class LessonController extends Controller
 {
@@ -14,6 +15,9 @@ class LessonController extends Controller
         // Recuperar os registros do banco de dados
         $lessons = Lesson::orderBy('id', 'DESC')->paginate(10);
 
+        // Salvar log  
+        Log::info('Listar as aulas.');
+
         // Carregar a view
         return view('lessons.index', ['lessons' => $lessons]);
     }
@@ -21,6 +25,9 @@ class LessonController extends Controller
     // Visualizar os detalhes da aula.
     public function show(Lesson $lesson)
     {
+        // Salvar log
+        Log::info('Visualizar a aula.', ['lesson_id' => $lesson->id]);
+
         // Carregar a view
         return view('lessons.show', ['lesson' => $lesson]);
     }
@@ -37,13 +44,19 @@ class LessonController extends Controller
     {
         try {
             // Cadastrar no banco de dados na tabela lessons.
-            Lesson::create([
-                'name' => $request->nme,
+            $lesson = Lesson::create([
+                'name' => $request->name,
             ]);
 
+            // Salvar log
+            Log::info('Aula cadastrada.', ['lesson_id' => $lesson->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('lessons.index')->with('success', 'Aula cadastrada com sucesso!');
+            return redirect()->route('lessons.show', ['lesson' => $lesson->id])->with('success', 'Aula cadastrada com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Aula não cadastrada.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro
             return back()->withInput()->with('error', 'Erro ao cadastrar a aula!');
         }
@@ -62,12 +75,18 @@ class LessonController extends Controller
         try {
             // Editar as informações do registro no banco de dados.
             $lesson->update([
-                'name' => $request->nme,
+                'name' => $request->name,
             ]);
+
+            // Salvar log
+            Log::info('Aula editada.', ['lesson_id' => $lesson->id]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('lessons.show', ['lesson' => $lesson->id])->with('success', 'Aula atualizada com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Aula não editada.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao atualizar a aula!');
         }
@@ -80,9 +99,15 @@ class LessonController extends Controller
             // Deletar o registro do banco de dados.
             $lesson->delete();
 
+            // Salvar log
+            Log::info('Aula deletada.', ['lesson_id' => $lesson->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('lessons.index')->with('success', 'Aula deletada com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Aula não deletada.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao deletar a aula!');
         }

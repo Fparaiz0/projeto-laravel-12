@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -14,6 +15,9 @@ class CourseController extends Controller
         // Recuperar os registros do banco de dados
         $courses = Course::orderBy('id', 'DESC')->paginate(10);
 
+        // Salvar log
+        Log::info('Listar os cursos.');
+
         // Carregar a view
         return view('courses.index', ['courses' => $courses]);
     }
@@ -21,6 +25,9 @@ class CourseController extends Controller
     // Visualizar os detalhes do curso.
     public function show(Course $course)
     {
+        // Salvar log
+        Log::info('Visualizar o curso.', ['course_id' => $course->id]);
+
         // Carregar a view
         return view('courses.show', ['course' => $course]);
     }
@@ -41,9 +48,15 @@ class CourseController extends Controller
                 'name' => $request->name
             ]);
 
+            // Salvar log
+            Log::info('Curso cadastrado.', ['course_id' => $course->id]);
+
             //Redicionar o usuário, enviar a mensagem de sucesso. 
             return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso cadastrado com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Curso não cadastrado.', ['error' => $e->getMessage()]);
+
             //Redicionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao cadastrar o curso!');
         }
@@ -65,9 +78,15 @@ class CourseController extends Controller
                 'name' => $request->name
             ]);
 
+            // Salvar log
+            Log::info('Curso atualizado.', ['course_id' => $course->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso atualizado com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Curso não atualizado.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao atualizar o curso!');
         }
@@ -80,9 +99,15 @@ class CourseController extends Controller
             // Deletar o registro do banco de dados.
             $course->delete();
 
+            // Salvar log
+            Log::info('Curso deletado.', ['course_id' => $course->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('courses.index')->with('success', 'Curso deletado com sucesso!');
         } catch (Exception $e) {
+            // Salvar log
+            Log::notice('Curso não deletado.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->with('error', 'Erro ao deletar o curso!');
         }

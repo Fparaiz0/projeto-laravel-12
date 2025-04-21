@@ -7,6 +7,11 @@
     
     <a href="{{ route('course_statuses.index') }}">Listar</a><br>
     <a href="{{ route('course_statuses.edit', ['courseStatus' => $courseStatus->id]) }}">Editar</a><br>
+    <form action="{{ route('course_statuses.destroy', ['courseStatus' => $courseStatus->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    </form><br><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $courseStatus->id }} <br>

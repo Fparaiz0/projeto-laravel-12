@@ -7,6 +7,11 @@
 
     <a href="{{ route('courses.index') }}">Listar</a><br>
     <a href="{{ route('courses.edit', ['course' => $course->id]) }}">Editar</a><br>
+    <form action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    </form><br><br>
 
 
     {{-- Imprimir o registro --}}

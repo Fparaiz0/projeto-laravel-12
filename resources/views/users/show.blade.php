@@ -7,7 +7,12 @@
     
     <a href="{{ route('users.index') }}">Listar</a><br>
     <a href="{{ route('users.edit', ['user' => $user->id]) }}">Editar</a><br>
-    <a href="{{ route('users.edit_password', ['user' => $user->id]) }}">Editar Senha</a><br><br>
+    <a href="{{ route('users.edit_password', ['user' => $user->id]) }}">Editar Senha</a><br>
+    <form action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    </form><br><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $user->id }} <br>

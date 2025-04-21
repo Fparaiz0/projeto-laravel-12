@@ -7,6 +7,11 @@
     
     <a href="{{ route('modules.index') }}">Listar</a><br>
     <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
+    <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    </form><br><br>
 
     {{-- Imprimir os registros --}}
         ID: {{ $module->id }} <br>

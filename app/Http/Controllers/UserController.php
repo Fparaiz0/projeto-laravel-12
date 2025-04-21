@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,6 +16,9 @@ class UserController extends Controller
         // Recuperar os registros do banco de dados
         $users = User::orderBy('id', 'DESC')->paginate(10);
 
+        // Salvar log
+        Log::info('Listar os usuários.');
+
         // Carregar a view
         return view('users.index', ['users' => $users]);
     }
@@ -22,6 +26,9 @@ class UserController extends Controller
     // Visualizar os detalhes do usuário.
     public function show(User $user)
     {
+        // Salvar log
+        Log::info('Visualizar o usuário.', ['user_id' => $user->id]);
+
         // Carregar a view
         return view('users.show', ['user' => $user]);
     }
@@ -38,15 +45,22 @@ class UserController extends Controller
     {
         try {
             // Cadastrar no banco de dados na tabela usuários 
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password
             ]);
 
+            // Salvar log
+            Log::info('Usuário cadastrado.', ['user_id' => $user->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('users.index')->with('success', 'Usuário cadastrado com sucesso!');
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário cadastrado com sucesso!');
         } catch (Exception $e) {
+
+            // Salvar log
+            Log::notice('Usuário não cadastrado.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro
             return back()->withInput()->with('error', 'Erro ao cadastrar o usuário!');
         }
@@ -69,9 +83,16 @@ class UserController extends Controller
                 'email' => $request->email
             ]);
 
+            // Salvar log
+            Log::info('Usuário editado.', ['user_id' => $user->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário atualizado com sucesso!');
         } catch (Exception $e) {
+
+            // Salvar log
+            Log::notice('Usuário não editado.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao atualizar o usuário!');
         }
@@ -109,9 +130,16 @@ class UserController extends Controller
                 'password' => $request->password,
             ]);
 
+            // Salvar log
+            Log::info('Senha editada.', ['user_id' => $user->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Senha atualizada com sucesso!');
         } catch (Exception $e) {
+
+            // Salvar log
+            Log::notice('Senha não editada.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao atualizar a senha!');
         }
@@ -124,9 +152,16 @@ class UserController extends Controller
             // Deletar o registro do banco de dados.
             $user->delete();
 
+            // Salvar log
+            Log::info('Usuário deletado.', ['user_id' => $user->id]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso.
             return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
         } catch (Exception $e) {
+
+            // Salvar log
+            Log::notice('Usuário não deletado.', ['error' => $e->getMessage()]);
+
             // Redirecionar o usuário, enviar a mensagem de erro.
             return back()->withInput()->with('error', 'Erro ao deletar o usuário!');
         }
