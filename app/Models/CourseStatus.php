@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class CourseStatus extends Model
+class CourseStatus extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     //Indicar o nome da tabela no banco de dados. 
     protected $table = 'course_statuses';
 

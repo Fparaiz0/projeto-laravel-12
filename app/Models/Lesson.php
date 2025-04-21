@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Lesson extends Model
+class Lesson extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     //Indicar o nome da tabela no banco de dados. 
     protected $table = 'lessons';
 

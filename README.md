@@ -159,8 +159,26 @@ php artisan make:request NomeRequest
 php artisan make:request UserRequest
 ```
 
-- Traduzir o Laravel para português 
+Traduzir o Laravel para português 
 [Módulo pt-BR](https://github.com/lucascudo/laravel-pt-BR-localization)
+
+Installar o pacote de auditoria do Laravel.
+```
+composer require owen-it/laravel-auditing
+```
+
+Publicar o pacote de auditoria do Laravel.
+```
+php artisan vendor:publish --provider "OwenIt\Auditing\AuditingServiceProvider" --tag="config"
+```
+```
+php artisan vendor:publish --provider "OwenIt\Auditing\AuditingServiceProvider" --tag="migrations"
+```
+
+Limpar cache de configuração.
+```
+php artisan config:clear
+```
 
 ## Como enviar e baixar os arquivos do GitHub
 
