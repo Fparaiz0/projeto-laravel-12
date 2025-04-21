@@ -13,8 +13,14 @@
         Nome: {{ $lesson->name }} <br>
         <a href="{{ route('lessons.show', ['lesson' => $lesson->id]) }}">Visualizar</a><br>
         <a href="{{ route('lessons.edit', ['lesson' => $lesson->id]) }}">Editar</a>
+
+        <form action="{{ route('lessons.destroy', ['lesson' => $lesson->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        </form>
         <hr>
     @empty
-        
+        Nenhum registro encontrado!
     @endforelse
 @endsection

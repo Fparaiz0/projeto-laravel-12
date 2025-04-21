@@ -72,4 +72,19 @@ class CourseController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o curso!');
         }
     }
+
+    // Deletar o curso no banco de dados.
+    public function destroy(Course $course)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $course->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('courses.index')->with('success', 'Curso deletado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->with('error', 'Erro ao deletar o curso!');
+        }
+    }
 }

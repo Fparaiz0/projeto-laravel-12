@@ -72,4 +72,18 @@ class CourseBatchController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar a turma!');
         }
     }
+    // Deletar a turma do banco de dados.
+    public function destroy(CourseBatch $courseBatch)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $courseBatch->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('course_batches.index')->with('success', 'Turma deletada com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar a turma!');
+        }
+    }
 }

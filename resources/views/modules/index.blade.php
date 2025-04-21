@@ -13,8 +13,14 @@
         Nome: {{ $module->name }} <br>
         <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a><br>
         <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a>
+
+        <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        </form>
         <hr>
     @empty
-        
+        Nenhum registro encontrado!
     @endforelse
 @endsection

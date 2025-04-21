@@ -72,4 +72,19 @@ class ModuleController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o módulo!');
         }
     }
+
+    // Deletar o módulo do banco de dados.
+    public function destroy(Module $module)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $module->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('modules.index')->with('success', 'Módulo deletado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar o módulo!');
+        }
+    }
 }

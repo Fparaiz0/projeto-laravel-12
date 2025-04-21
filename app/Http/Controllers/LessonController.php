@@ -72,4 +72,19 @@ class LessonController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar a aula!');
         }
     }
+
+    // Deletar a aula do banco de dados.
+    public function destroy(Lesson $lesson)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $lesson->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('lessons.index')->with('success', 'Aula deletada com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar a aula!');
+        }
+    }
 }

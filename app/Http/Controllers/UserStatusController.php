@@ -72,4 +72,19 @@ class UserStatusController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o status do usuário!');
         }
     }
+
+    // Deletar o status do usuário no banco de dados.
+    public function destroy(UserStatus $userStatus)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $userStatus->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('user_statuses.index')->with('success', 'Status do usuário deletado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar o status do usuário!');
+        }
+    }
 }

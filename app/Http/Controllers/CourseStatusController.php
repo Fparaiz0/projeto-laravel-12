@@ -72,4 +72,19 @@ class CourseStatusController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o status do curso!');
         }
     }
+
+    // Deletar o status do curso do banco de dados.
+    public function destroy(CourseStatus $courseStatus)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $courseStatus->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('course_statuses.index')->with('success', 'Status do curso deletado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar o status do curso!');
+        }
+    }
 }

@@ -76,4 +76,19 @@ class UserController extends Controller
             return back()->withInput()->with('error', 'Erro ao atualizar o usuário!');
         }
     }
+
+    // Deletar o usuário no banco de dados.
+    public function destroy(User $user)
+    {
+        try {
+            // Deletar o registro do banco de dados.
+            $user->delete();
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso.
+            return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
+        } catch (Exception $e) {
+            // Redirecionar o usuário, enviar a mensagem de erro.
+            return back()->withInput()->with('error', 'Erro ao deletar o usuário!');
+        }
+    }
 }

@@ -13,8 +13,14 @@
         Nome: {{ $userStatus->name }} <br>
        <a href="{{ route('user_statuses.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a><br>
        <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
+
+        <form action="{{ route('user_statuses.destroy', ['userStatus' => $userStatus->id]) }}" method="POST">
+            @csrf
+            @method('delete')
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        </form>
         <hr>
     @empty
-        
+        Nenhum registro encontrado!
     @endforelse
 @endsection
