@@ -195,7 +195,7 @@ Adicionar todos os arquivos modificados no staging area - área de praparação.
 git add .
 ```
 
-commit representa um conjunto de alterações e um ponto específico da história do seu projeto, registra apenas as alterações adicionadas ao índice de praparação. 
+Commit representa um conjunto de alterações e um ponto específico da história do seu projeto, registra apenas as alterações adicionadas ao índice de praparação. 
 O comando -m permite que insira a mensagem de commit diretamente na linha de comando.
 ```
 git commit -m "NomeDoCommit"
