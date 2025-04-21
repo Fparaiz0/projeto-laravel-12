@@ -22,6 +22,10 @@ Route::prefix('users')->group(function () {
     Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    // Rota para editar a senha do usuário
+    Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit_password');
+    Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update_password');
 });
 // Usuários Status  
 Route::prefix('user-statuses')->group(function () {

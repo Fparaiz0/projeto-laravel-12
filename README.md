@@ -155,8 +155,11 @@ Criar o arquivo de Request com validações para o formulário.
 ```
 php artisan make:request NomeRequest
 ```
+```
 php artisan make:request UserRequest
 ```
+
+Traduzir para português [Módulo pt-BR](https://github.com/lucascudo/laravel-pt-BR-localization)
 
 ## Como enviar e baixar os arquivos do GitHub
 
