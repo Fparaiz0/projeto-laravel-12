@@ -13,7 +13,7 @@
         @method('PUT')
 
         <label>Nome: </label>
-        <input type="text" name="name" id="name" placeholder="Nome do módulo" value=" {{ old('name', $module->name) }} " required><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome do módulo" value="{{ old('name', $module->name) }}" required><br><br>
 
         <button type="submit">Salvar</button>
     </form>

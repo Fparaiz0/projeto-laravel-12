@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseStatusRequest;
 use App\Models\CourseStatus;
 use Exception;
-use Illuminate\Http\Request;
 
 class CourseStatusController extends Controller
 {
@@ -33,7 +33,7 @@ class CourseStatusController extends Controller
     }
 
     // Cadastrar no banco de dados o status do curso.
-    public function store(Request $request)
+    public function store(CourseStatusRequest $request)
     {
         try {
             // Cadastrar no banco de dados na tabela course_statuses.
@@ -57,7 +57,7 @@ class CourseStatusController extends Controller
     }
 
     // Editar o status do curso no banco de dados.
-    public function update(Request $request, CourseStatus $courseStatus)
+    public function update(CourseStatusRequest $request, CourseStatus $courseStatus)
     {
         try {
             // Editar as informações do registro no banco de dados.

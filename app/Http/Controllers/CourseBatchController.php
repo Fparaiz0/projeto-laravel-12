@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseBatchRequest;
 use App\Models\CourseBatch;
 use Exception;
-use Illuminate\Http\Request;
 
 class CourseBatchController extends Controller
 {
@@ -33,7 +33,7 @@ class CourseBatchController extends Controller
     }
 
     // Cadastrar no banco de dados turmas do curso.
-    public function store(Request $request)
+    public function store(CourseBatchRequest $request)
     {
         try {
             // Cadastrar no banco de dados na tabela course_batches.
@@ -57,7 +57,7 @@ class CourseBatchController extends Controller
     }
 
     // Editar a turma no banco de dados.
-    public function update(Request $request, CourseBatch $courseBatch)
+    public function update(CourseBatchRequest $request, CourseBatch $courseBatch)
     {
         try {
             // Editar as informações do registro no banco de dados.

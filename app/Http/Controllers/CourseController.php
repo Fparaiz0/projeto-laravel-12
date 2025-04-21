@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Exception;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
@@ -33,7 +33,7 @@ class CourseController extends Controller
     }
 
     //Cadastrar no banco de dados o novo curso.
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
         try {
             //Cadastrar no banco de dados na tabela cursos.
@@ -57,7 +57,7 @@ class CourseController extends Controller
     }
 
     // Editar o curso no banco de dados.
-    public function update(Request $request, Course $course)
+    public function update(CourseRequest $request, Course $course)
     {
         try {
             // Editar as informações do registro no banco de dados.

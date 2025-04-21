@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ModuleRequest;
 use App\Models\Module;
 use Exception;
-use Illuminate\Http\Request;
 
 class ModuleController extends Controller
 {
@@ -33,7 +33,7 @@ class ModuleController extends Controller
     }
 
     // Cadastrar no banco de dados o novo módulo.
-    public function store(Request $request)
+    public function store(ModuleRequest $request)
     {
         try {
             // Cadastrar no banco de dados na tabela modules.
@@ -57,7 +57,7 @@ class ModuleController extends Controller
     }
 
     // Editar o módulo no banco de dados.
-    public function update(Request $request, Module $module)
+    public function update(ModuleRequest $request, Module $module)
     {
         try {
             // Editar as informações do registro no banco de dados.

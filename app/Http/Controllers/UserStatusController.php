@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStatusRequest;
 use App\Models\UserStatus;
 use Exception;
-use Illuminate\Http\Request;
 
 class UserStatusController extends Controller
 {
@@ -33,7 +33,7 @@ class UserStatusController extends Controller
     }
 
     // Cadastrar no banco de dados o novo status.
-    public function store(Request $request)
+    public function store(UserStatusRequest $request)
     {
         try {
             // Cadastrar no banco de dados na tabela statuses.
@@ -57,7 +57,7 @@ class UserStatusController extends Controller
     }
 
     // Editar o status do usuário no banco de dados.
-    public function update(Request $request, UserStatus $userStatus)
+    public function update(UserStatusRequest $request, UserStatus $userStatus)
     {
         try {
             // Editar as informações do registro no banco de dados.

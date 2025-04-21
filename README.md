@@ -151,6 +151,13 @@ php artisan make:component nome --view
 php artisan make:component alert --view
 ```
 
+Criar o arquivo de Request com validações para o formulário.
+```
+php artisan make:request NomeRequest
+```
+php artisan make:request UserRequest
+```
+
 ## Como enviar e baixar os arquivos do GitHub
 
 - Criar o repositório **"projeto-laravel-12"** no GitHub.

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LessonRequest;
 use App\Models\Lesson;
 use Exception;
-use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
@@ -33,7 +33,7 @@ class LessonController extends Controller
     }
 
     // Cadastrar no banco de dados a nova aula.
-    public function store(Request $request)
+    public function store(LessonRequest $request)
     {
         try {
             // Cadastrar no banco de dados na tabela lessons.
@@ -57,7 +57,7 @@ class LessonController extends Controller
     }
 
     // Editar a aula no banco de dados.
-    public function update(Request $request, Lesson $lesson)
+    public function update(LessonRequest $request, Lesson $lesson)
     {
         try {
             // Editar as informações do registro no banco de dados.

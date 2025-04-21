@@ -12,7 +12,7 @@
         @method('POST')
 
         <label>Nome do status: </label>
-        <input type="text" name="name" id="name" placeholder="Nome do status" value=" {{ old('name') }} " required><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome do status" value="{{ old('name') }}" required><br><br>
 
         <button type="submit">Cadastrar</button>
     </form>
