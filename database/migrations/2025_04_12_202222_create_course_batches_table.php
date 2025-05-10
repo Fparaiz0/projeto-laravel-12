@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Executar as alterações na base de dados.
      */
     public function up(): void
     {
-        Schema::create('coursebatches', function (Blueprint $table) {
+        Schema::create('course_batches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -19,10 +19,10 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverter as alterações na base de dados.
      */
     public function down(): void
     {
-        Schema::dropIfExists('coursebatches');
+        Schema::dropIfExists('course_batches');
     }
 };

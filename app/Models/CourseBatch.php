@@ -10,7 +10,7 @@ class CourseBatch extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
 
     //Indicar o nome da tabela no banco de dados. 
-    protected $table = 'coursebatches';
+    protected $table = 'course_batches';
 
     //Indicar quais colunas podem ser manipuladas. 
     protected $fillable = ['name'];
