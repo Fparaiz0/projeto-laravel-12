@@ -48,4 +48,10 @@ class User extends Authenticatable implements Auditable
             'password' => 'hashed',
         ];
     }
+
+    // Criar relacionamento entre um e muitos inverso
+    public function userStatus()
+    {
+        return $this->belongsTo(UserStatus::class);
+    }
 }

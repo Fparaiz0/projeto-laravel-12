@@ -16,6 +16,7 @@
     {{-- Imprimir os registros --}}
         ID: {{ $courseBatch->id }} <br>
         Nome: {{ $courseBatch->name }} <br>
+        Curso: {{ $courseBatch->course->name }} <br>
         Data de cadastro: {{ \Carbon\Carbon::parse($courseBatch->created_at)-> format('d/m/Y H:i:s')}} <br>
         Data de atualização: {{ \Carbon\Carbon::parse($courseBatch->updated_at)-> format('d/m/Y H:i:s')}} <br>
         

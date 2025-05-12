@@ -15,10 +15,11 @@
     </form><br><br>
 
     {{-- Imprimir os registros --}}
-        ID: {{ $user->id }} <br>
-        Nome: {{ $user->name }} <br>
-        Email: {{ $user->email }} <br>
-        Data de cadastro: {{ \Carbon\Carbon::parse($user->created_at)-> format('d/m/Y H:i:s')}} <br>
-        Data de atualização: {{ \Carbon\Carbon::parse($user->updated_at)-> format('d/m/Y H:i:s')}} <br>
+    ID: {{ $user->id }} <br>
+    Nome: {{ $user->name }} <br>
+    Email: {{ $user->email }} <br>
+    Status: {{ $user->userStatus->name }} <br>
+    Data de cadastro: {{ \Carbon\Carbon::parse($user->created_at)-> format('d/m/Y H:i:s')}} <br>
+    Data de atualização: {{ \Carbon\Carbon::parse($user->updated_at)-> format('d/m/Y H:i:s')}} <br>
         
 @endsection

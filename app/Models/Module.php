@@ -14,4 +14,16 @@ class Module extends Model implements Auditable
 
     //Indicar quais colunas podem ser manipuladas. 
     protected $fillable = ['name'];
+
+    // Criar relacionamento entre um e muitos
+    public function lesson()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
+    // Criar relacionamento entre um e muitos inverso
+    public function courseBatch()
+    {
+        return $this->belongsTo(CourseBatch::class);
+    }
 }

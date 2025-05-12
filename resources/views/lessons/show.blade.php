@@ -16,6 +16,7 @@
     {{-- Imprimir os registros --}}
         ID: {{ $lesson->id }} <br>
         Nome: {{ $lesson->name }} <br>
+        Módulo: {{ $lesson->module->name }} <br>
         Data de cadastro: {{ \Carbon\Carbon::parse($lesson->created_at)-> format('d/m/Y H:i:s')}} <br>
         Data de atualização: {{ \Carbon\Carbon::parse($lesson->updated_at)-> format('d/m/Y H:i:s')}} <br>
         

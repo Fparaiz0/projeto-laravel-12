@@ -11,6 +11,13 @@ class UserStatus extends Model implements Auditable
 
     //Indicar o nome da tabela no banco de dados. 
     protected $table = 'user_statuses';
+
     //Indicar quais colunas podem ser manipuladas. 
     protected $fillable = ['name'];
+
+    // Criar relacionamento entre um e muitos
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }
