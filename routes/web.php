@@ -3,15 +3,19 @@
 use App\Http\Controllers\CourseBatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Tela home
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// Tela de login 
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
 // Usuários
 Route::prefix('users')->group(function () {
@@ -25,7 +29,6 @@ Route::prefix('users')->group(function () {
 
     Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit_password');
     Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update_password');
-
 });
 
 // Usuários Status
@@ -65,7 +68,7 @@ Route::prefix('course-statuses')->group(function () {
 Route::prefix('course-batches')->group(function () {
     Route::get('/courses/{course}', [CourseBatchController::class, 'index'])->name('course_batches.index');
     Route::get('/create/{course}', [CourseBatchController::class, 'create'])->name('course_batches.create');
-    Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show'); 
+    Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show');
     Route::post('/{course}', [CourseBatchController::class, 'store'])->name('course_batches.store');
     Route::get('/{courseBatch}/edit', [CourseBatchController::class, 'edit'])->name('course_batches.edit');
     Route::put('/{courseBatch}', [CourseBatchController::class, 'update'])->name('course_batches.update');
