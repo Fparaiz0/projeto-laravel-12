@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseBatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LoginController;
@@ -11,11 +12,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
 
-// Tela home
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Página inicial do site 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Tela de login 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+// Processar os dados do login
+Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
+
+// Página inicial do Administrativo
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Usuários
 Route::prefix('users')->group(function () {

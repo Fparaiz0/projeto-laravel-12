@@ -5,7 +5,7 @@
 
     <x-alert />
 
-    <form action="#" method="POST">
+    <form action="{{ route('login.process') }}" method="POST">
         @csrf
         @method('POST')
 
