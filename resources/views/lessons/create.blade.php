@@ -1,18 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Cadastrar as aulas!</h2>
+    <h2>Cadastrar Aula</h2>
+
+    <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Aulas</a><br><br>
 
     <x-alert />
 
-    <a href="{{ route('lessons.index') }}">Listar</a><br><br>
-
-    <form action="{{ route('lessons.store') }}" method="POST">
+    <form action="{{ route('lessons.store', ['module' => $module->id]) }}" method="POST">
         @csrf
         @method('POST')
 
-        <label>Nome da aula: </label>
-        <input type="text" name="name" id="name" placeholder="Nome da aula" value="{{ old('name') }}" required><br><br>
+        <label>Nome: </label>
+        <input type="text" name="name" id="name" placeholder="Nome da aula" value="{{ old('name') }}"
+            required><br><br>
 
         <button type="submit">Cadastrar</button>
     </form>

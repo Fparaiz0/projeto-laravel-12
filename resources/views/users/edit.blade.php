@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Editar os usuários!</h2>
+    <h2>Editar Usuário</h2>
 
     <a href="{{ route('users.index') }}">Listar</a><br>
-    <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a>
+    <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a><br><br>
 
     <x-alert />
 
@@ -13,10 +13,12 @@
         @method('PUT')
 
         <label>Nome: </label>
-        <input type="text" name="name" id="name" placeholder="Nome do usuário" value="{{ old('name', $user->name) }}" required><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome do usuário" value="{{ old('name', $user->name) }}"
+            required><br><br>
 
-        <label>Email: </label>
-        <input type="email" name="email" id="email" placeholder="Email do usuário" value="{{ old('email', $user->email) }}" required><br><br>
+        <label>E-mail: </label>
+        <input type="email" name="email" id="email" placeholder="E-mail do usuário"
+            value="{{ old('email', $user->email) }}" required><br><br>
 
         <button type="submit">Salvar</button>
     </form>

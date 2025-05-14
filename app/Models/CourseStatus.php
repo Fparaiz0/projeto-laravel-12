@@ -8,11 +8,11 @@ use OwenIt\Auditing\Contracts\Auditable;
 class CourseStatus extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
-
-    //Indicar o nome da tabela no banco de dados. 
+    
+    // Indicar o nome da tabela
     protected $table = 'course_statuses';
 
-    //Indicar quais colunas podem ser manipuladas. 
+    // Indicar quais colunas podem ser manipuladas
     protected $fillable = ['name'];
 
     // Criar relacionamento entre um e muitos

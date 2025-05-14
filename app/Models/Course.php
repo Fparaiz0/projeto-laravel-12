@@ -9,10 +9,10 @@ class Course extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
 
-    //Indicar o nome da tabela no banco de dados. 
+    // Indicar o nome da tabela
     protected $table = 'courses';
 
-    //Indicar quais colunas podem ser manipuladas. 
+    // Indicar quais colunas podem ser manipuladas
     protected $fillable = ['name'];
 
     // Criar relacionamento entre um e muitos inverso

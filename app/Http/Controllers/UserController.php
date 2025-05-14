@@ -13,42 +13,46 @@ class UserController extends Controller
     // Listar os usuários
     public function index()
     {
-        // Recuperar os registros do banco de dados
+        // Recuperar os registros do banco dados
+        // $users = User::where('id', 1000)->get();
+        // $users = User::orderBy('id', 'DESC')->get();
         $users = User::orderBy('id', 'DESC')->paginate(10);
 
         // Salvar log
         Log::info('Listar os usuários.');
 
-        // Carregar a view
+        // Carregar a view 
         return view('users.index', ['users' => $users]);
     }
 
-    // Visualizar os detalhes do usuário.
+    // Visualizar os detalhes do usuário
     public function show(User $user)
     {
+
         // Salvar log
         Log::info('Visualizar o usuário.', ['user_id' => $user->id]);
 
-        // Carregar a view
+        // Carregar a view 
         return view('users.show', ['user' => $user]);
     }
 
-    // Carregar o formulário de cadastro de usuários.
+    // Carregar o formulário cadastrar novo usuário
     public function create()
     {
-        // Carregar a view
+        // Carregar a view 
         return view('users.create');
     }
 
-    // Cadastrar no banco de dados o novo usuário.
+    // Cadastrar no banco de dados o novo usuário
     public function store(UserRequest $request)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Cadastrar no banco de dados na tabela usuários 
+            // Cadastrar no banco de dados na tabela usuário
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password
+                'password' => $request->password,
             ]);
 
             // Salvar log
@@ -62,108 +66,107 @@ class UserController extends Controller
             Log::notice('Usuário não cadastrado.', ['error' => $e->getMessage()]);
 
             // Redirecionar o usuário, enviar a mensagem de erro
-            return back()->withInput()->with('error', 'Erro ao cadastrar o usuário!');
+            return back()->withInput()->with('error', 'Usuário não cadastrado!');
         }
     }
 
-    // Carregar o formulário de edição do usuário.
+    // Carregar o formulário editar usuário
     public function edit(User $user)
     {
-        // Carregar a view
+        // Carregar a view 
         return view('users.edit', ['user' => $user]);
     }
 
-    // Editar o usuário no banco de dados.
+    // Editar no banco de dados o usuário
     public function update(UserRequest $request, User $user)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Editar as informações do registro no banco de dados.
+            // Editar as informações do registro no banco de dados
             $user->update([
                 'name' => $request->name,
-                'email' => $request->email
+                'email' => $request->email,
             ]);
 
             // Salvar log
             Log::info('Usuário editado.', ['user_id' => $user->id]);
 
-            // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário atualizado com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
         } catch (Exception $e) {
 
             // Salvar log
             Log::notice('Usuário não editado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao atualizar o usuário!');
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Usuário não editado!');
         }
     }
 
-    // Carregar o formulário de edição de senha do usuário.
+    // Carregar o formulário editar senha do usuário
     public function editPassword(User $user)
     {
-        // Carregar a view
+        // Carregar a view 
         return view('users.edit_password', ['user' => $user]);
     }
 
-    // Editar a senha do usuário no banco de dados.
+    // Editar no banco de dados a senha do usuário
     public function updatePassword(Request $request, User $user)
     {
-        // Validar o formulário.
+        // Validar o formulário
         $request->validate(
             [
-                'password' => 'required|min:6|',
+                'password' => 'required|min:6',
             ],
-            // Mensagens de erro para as regras de validação
-            // Caso o usuário não preencha o campo senha, a mensagem de erro será "O campo senha é obrigatório!"
-            // Caso o usuário não preencha o campo senha com menos de 6 caracteres, a mensagem de erro será "O campo senha deve ter no mínimo 6 caracteres!"
             [
-                'password.required' => "O campo senha é obrigatório!",
-                'password.min' => "O campo senha deve ter no mínimo :min caracteres!",
+                'password.required' => "Campo senha é obrigatório!",
+                'password.min' => "Senha com no mínimo :min caracteres!",
             ]
         );
 
-
-        // Capturar possíveis exceções durante a execução do código.
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Editar as informações do registro no banco de dados.
+            // Editar as informações do registro no banco de dados
             $user->update([
                 'password' => $request->password,
             ]);
 
             // Salvar log
-            Log::info('Senha editada.', ['user_id' => $user->id]);
+            Log::info('Senha do usuário editado.', ['user_id' => $user->id]);
 
-            // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Senha atualizada com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Senha do usuário editado com sucesso!');
         } catch (Exception $e) {
 
             // Salvar log
-            Log::notice('Senha não editada.', ['error' => $e->getMessage()]);
+            Log::notice('Senha do usuário não editado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao atualizar a senha!');
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Senha do usuário não editado!');
         }
     }
 
-    // Deletar o usuário no banco de dados.
+    // Excluir o curso do banco de dados
     public function destroy(User $user)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Deletar o registro do banco de dados.
+
+            // Excluir o registro do banco de dados
             $user->delete();
 
             // Salvar log
-            Log::info('Usuário deletado.', ['user_id' => $user->id]);
+            Log::info('Usuário apagado.', ['user_id' => $user->id]);
 
-            // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('users.index')->with('success', 'Usuário deletado com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('users.index')->with('success', 'Usuário apagado com sucesso!');
         } catch (Exception $e) {
 
             // Salvar log
-            Log::notice('Usuário não deletado.', ['error' => $e->getMessage()]);
+            Log::notice('Usuário não editado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao deletar o usuário!');
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Usuário não apagado!');
         }
     }
 }

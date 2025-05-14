@@ -4,10 +4,20 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Classe de requisição para validação de usuários.
+ *
+ * Responsável por definir as regras de validação e mensagens de erro 
+ * para operações relacionadas a usuários, como criação e edição.
+ *
+ * @package App\Http\Requests
+ */
 class UserRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determina se o usuário está autorizado a fazer esta requisição.
+     *
+     * @return bool Retorna true para permitir a requisição.
      */
     public function authorize(): bool
     {
@@ -15,39 +25,36 @@ class UserRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Retorna as regras de validação aplicáveis à requisição.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string> 
+     * Regras de validação.
      */
-
-    // Regras de validação para o fomulário de cadastro de usuários
     public function rules(): array
     {
         $user = $this->route('user');
+
         return [
             'name' => 'required',
-            // Se o email for diferente do email do usuário, então o email deve ser único
-            'email' => 'required|email|unique:users,email,' . ($user ? $user->id : 'null'),
+            'email' => 'required|email|unique:users,email,' . ($user ? $user->id : null),
             'password' => 'required_if:password,!=null|min:6',
         ];
     }
 
-    // Mensagens de erro para as regras de validação
-    // Caso o usuário não preencha o campo nome, a mensagem de erro será "O campo nome é obrigatório!"
-    // Caso o usuário não preencha o campo e-mail, a mensagem de erro será "O campo e-mail é obrigatório!"
-    // Caso o usuário não preencha o campo e-mail com um endereço de e-mail válido, a mensagem de erro será "O campo e-mail deve ser um endereço de e-mail válido!"
-    // Caso o usuário não preencha o campo e-mail com um endereço de e-mail que já está cadastrado, a mensagem de erro será "O e-mail já está cadastrado!"
-    // Caso o usuário não preencha o campo senha, a mensagem de erro será "O campo senha é obrigatório!"
-    // Caso o usuário não preencha o campo senha com menos de 6 caracteres, a mensagem de erro será "O campo senha deve ter no mínimo 6 caracteres!"
+    /**
+     * Define mensagens personalizadas para as regras de validação.
+     *
+     * @return array<string, string> Mensagens de erro personalizadas.
+     */
     public function messages(): array
     {
         return [
-            'name.required' => "O campo nome é obrigatório!",
-            'email.required' => "O campo e-mail é obrigatório!",
-            'email.email' => "O campo e-mail deve ser um endereço de e-mail válido!",
+            'name.required' => "Campo nome é obrigatório!",
+            'email.required' => "Campo e-mail é obrigatório!",
+            'email.email' => "Necessário enviar e-mail válido!",
             'email.unique' => "O e-mail já está cadastrado!",
-            'password.required' => "O campo senha é obrigatório!",
-            'password.min' => "O campo senha deve ter no mínimo :min caracteres!",
+            'password.required' => "Campo senha é obrigatório!",
+            'password.min' => "Senha com no mínimo :min caracteres!",
         ];
     }
 }

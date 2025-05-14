@@ -4,10 +4,20 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Classe de requisição para validação de status para curso.
+ *
+ * Responsável por definir as regras de validação e mensagens de erro 
+ * para operações relacionadas a status para curso, como criação e edição.
+ *
+ * @package App\Http\Requests
+ */
 class CourseStatusRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determina se o usuário está autorizado a fazer esta requisição.
+     *
+     * @return bool Retorna true para permitir a requisição.
      */
     public function authorize(): bool
     {
@@ -15,25 +25,30 @@ class CourseStatusRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Retorna as regras de validação aplicáveis à requisição.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string> 
+     * Regras de validação.
      */
-
-    // Regras de validação para o fomulário de cadastro de status de cursos
     public function rules(): array
     {
+        $courseStatus = $this->route('courseStatus');
+
         return [
-            'name' => 'required',
+            'name' => 'required|unique:course_statuses,name,' . ($courseStatus ? $courseStatus->id : null),
         ];
     }
 
-    // Mensagens de erro para as regras de validação
-    // Caso o usuário não preencha o campo nome, a mensagem de erro será "O campo nome é obrigatório!"
+    /**
+     * Define mensagens personalizadas para as regras de validação.
+     *
+     * @return array<string, string> Mensagens de erro personalizadas.
+     */
     public function messages(): array
     {
         return [
-            'name.required' => "O campo nome é obrigatório!",
+            'name.required' => "Campo nome é obrigatório!",
+            'name.unique' => "O nome já está cadastrado!",
         ];
     }
 }

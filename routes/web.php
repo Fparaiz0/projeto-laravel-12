@@ -23,11 +23,12 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    // Rota para editar a senha do usuário
     Route::get('/{user}/edit-password', [UserController::class, 'editPassword'])->name('users.edit_password');
     Route::put('/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.update_password');
+
 });
-// Usuários Status  
+
+// Usuários Status
 Route::prefix('user-statuses')->group(function () {
     Route::get('/', [UserStatusController::class, 'index'])->name('user_statuses.index');
     Route::get('/create', [UserStatusController::class, 'create'])->name('user_statuses.create');
@@ -38,7 +39,7 @@ Route::prefix('user-statuses')->group(function () {
     Route::delete('/{userStatus}', [UserStatusController::class, 'destroy'])->name('user_statuses.destroy');
 });
 
-// Cursos 
+// Cursos
 Route::prefix('courses')->group(function () {
     Route::get('/', [CourseController::class, 'index'])->name('courses.index');
     Route::get('/create', [CourseController::class, 'create'])->name('courses.create');
@@ -48,6 +49,7 @@ Route::prefix('courses')->group(function () {
     Route::put('/{course}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
+
 // Cursos Status
 Route::prefix('course-statuses')->group(function () {
     Route::get('/', [CourseStatusController::class, 'index'])->name('course_statuses.index');
@@ -58,32 +60,35 @@ Route::prefix('course-statuses')->group(function () {
     Route::put('/{courseStatus}', [CourseStatusController::class, 'update'])->name('course_statuses.update');
     Route::delete('/{courseStatus}', [CourseStatusController::class, 'destroy'])->name('course_statuses.destroy');
 });
+
 // Turmas
 Route::prefix('course-batches')->group(function () {
-    Route::get('/{course}', [CourseBatchController::class, 'index'])->name('course_batches.index');
-    Route::get('/create', [CourseBatchController::class, 'create'])->name('course_batches.create');
-    Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show');
-    Route::post('/', [CourseBatchController::class, 'store'])->name('course_batches.store');
+    Route::get('/courses/{course}', [CourseBatchController::class, 'index'])->name('course_batches.index');
+    Route::get('/create/{course}', [CourseBatchController::class, 'create'])->name('course_batches.create');
+    Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show'); 
+    Route::post('/{course}', [CourseBatchController::class, 'store'])->name('course_batches.store');
     Route::get('/{courseBatch}/edit', [CourseBatchController::class, 'edit'])->name('course_batches.edit');
     Route::put('/{courseBatch}', [CourseBatchController::class, 'update'])->name('course_batches.update');
     Route::delete('/{courseBatch}', [CourseBatchController::class, 'destroy'])->name('course_batches.destroy');
 });
-// Modulos
+
+// Módulos
 Route::prefix('modules')->group(function () {
-    Route::get('/{courseBatch}', [ModuleController::class, 'index'])->name('modules.index');
-    Route::get('/create', [ModuleController::class, 'create'])->name('modules.create');
+    Route::get('/course-batch/{courseBatch}', [ModuleController::class, 'index'])->name('modules.index');
+    Route::get('/create/{courseBatch}', [ModuleController::class, 'create'])->name('modules.create');
     Route::get('/{module}', [ModuleController::class, 'show'])->name('modules.show');
-    Route::post('/', [ModuleController::class, 'store'])->name('modules.store');
+    Route::post('/create/{courseBatch}', [ModuleController::class, 'store'])->name('modules.store');
     Route::get('/{module}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
     Route::put('/{module}', [ModuleController::class, 'update'])->name('modules.update');
     Route::delete('/{module}', [ModuleController::class, 'destroy'])->name('modules.destroy');
 });
+
 // Aulas
 Route::prefix('lessons')->group(function () {
-    Route::get('/{module}', [LessonController::class, 'index'])->name('lessons.index');
-    Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
+    Route::get('/module/{module}', [LessonController::class, 'index'])->name('lessons.index');
+    Route::get('/create/{module}', [LessonController::class, 'create'])->name('lessons.create');
     Route::get('/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
-    Route::post('/', [LessonController::class, 'store'])->name('lessons.store');
+    Route::post('/{module}', [LessonController::class, 'store'])->name('lessons.store');
     Route::get('/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit');
     Route::put('/{lesson}', [LessonController::class, 'update'])->name('lessons.update');
     Route::delete('/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');

@@ -21,7 +21,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverter as alterações na base de dados.
+     * Reverte as alterações na base de dados.
      */
     public function down(): void
     {

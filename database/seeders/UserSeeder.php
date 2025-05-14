@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Exception;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 
@@ -15,34 +14,40 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        //Capturar possíveis exceções durante a execução do código.
+
+        // Capturar possíveis exceções durante a execução do seeder. 
         try {
-            //Verificar se o usuário já está cadastrado no banco de dados. 
-            if (!User::where('email', 'fparaizo3@gmail.com')->first()) {
-                //Cadastrar o usuário no banco de dados. 
+            // Verificar se o usuário está cadastrado no banco de dados
+            if (!User::where('email', 'cesar@celke.com.br')->first()) {
+                // Cadastrar o usuário
                 User::create([
-                    'name' => 'Felipe Paraizo',
-                    'email' => 'fparaizo3@gmail.com',
+                    'name' => 'Cesar',
+                    'email' => 'cesar@celke.com.br',
                     'password' => '123456A#',
                 ]);
             }
+
             if (App::environment() !== 'production') {
-                //Se não encontrar o registro com o e-mail, cadastra o registro no BD.
+                // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 User::firstOrCreate(
-                    ['email' => 'byanka@gmail.com'],
-                    ['name' => 'Byanka', 'email' => 'byanka@gmail.com', 'password' => '123456A#'],
+                    ['email' => 'kelly@celke.com.br'],
+                    ['name' => 'Kelly', 'email' => 'kelly@celke.com.br', 'password' => '123456A#'],
                 );
+
+                // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 User::firstOrCreate(
-                    ['email' => 'gilson@gmail.com'],
-                    ['name' => 'Gilson', 'email' => 'gilson@gmail.com', 'password' => '123456A#'],
+                    ['email' => 'jessica@celke.com.br'],
+                    ['name' => 'Jessica', 'email' => 'jessica@celke.com.br', 'password' => '123456A#'],
                 );
+
+                // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 User::firstOrCreate(
-                    ['email' => 'delacir@gmail.com'],
-                    ['name' => 'Delacir', 'email' => 'delacir@gmail.com', 'password' => '123456A#'],
+                    ['email' => 'gabrielly@celke.com.br'],
+                    ['name' => 'Gabrielly', 'email' => 'gabrielly@celke.com.br', 'password' => '123456A#'],
                 );
             }
         } catch (Exception $e) {
-            //Lidar com as exceções, se necessário.
+            // Lidar com a exceção
         }
     }
 }

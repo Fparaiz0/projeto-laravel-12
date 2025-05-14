@@ -1,18 +1,20 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Cadastrar os status!</h2>
-
-    <x-alert/>
+    <h2>Cadastrar Status Usuário</h2>
 
     <a href="{{ route('user_statuses.index') }}">Listar</a><br><br>
+
+    <x-alert />
 
     <form action="{{ route('user_statuses.store') }}" method="POST">
         @csrf
         @method('POST')
 
         <label>Nome: </label>
-        <input type="text" name="name" id="name" placeholder="Nome do usuário" value="{{ old('name') }}" required><br><br>
+        <input type="text" name="name" id="name" placeholder="Nome do status" value="{{ old('name') }}"
+            required><br><br>
 
         <button type="submit">Cadastrar</button>
+    </form>
 @endsection

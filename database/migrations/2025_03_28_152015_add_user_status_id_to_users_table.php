@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->foreignId('course_status_id')
-                ->after('name')
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('user_status_id')
+                ->after('remember_token')
                 ->default(1)
-                ->constrained('course_statuses')
+                ->constrained('user_statuses')
                 ->onUpdate('cascade')
                 ->onDelete('restrict');
         });
     }
 
     /**
-     * Reverter as alterações na base de dados.
+     * Reverte as alterações na base de dados.
      */
     public function down(): void
     {
-        Schema::table('courses', function (Blueprint $table) {
-            $table->dropForeign(['course_status_id']);
-            $table->dropColumn('course_status_id');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['user_status_id']);
+            $table->dropColumn('user_status_id');
         });
     }
 };

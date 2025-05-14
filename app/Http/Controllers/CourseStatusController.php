@@ -9,107 +9,114 @@ use Illuminate\Support\Facades\Log;
 
 class CourseStatusController extends Controller
 {
-    // Listar os status dos cursos
+    // Listar os status cursos
     public function index()
     {
-        // Recuperar os registros do banco de dados
+        // Recuperar os registros do banco dados
         $coursesStatuses = CourseStatus::orderBy('id', 'DESC')->paginate(10);
 
         // Salvar log
-        Log::info('Listar os status dos cursos.');
+        Log::info('Listar os status para curso.');
 
-        // Carregar a view
+        // Carregar a view 
         return view('course_statuses.index', ['coursesStatuses' => $coursesStatuses]);
     }
 
-    // Visualizar os detalhes do status do curso.
+    // Visualizar os detalhes do status para curso
     public function show(CourseStatus $courseStatus)
     {
         // Salvar log
-        Log::info('Visualizar o status do curso.', ['course_status_id' => $courseStatus->id]);
+        Log::info('Visualizar o status para curso.', ['course_status_id' => $courseStatus->id]);
 
-        // Carregar a view
+        // Carregar a view 
         return view('course_statuses.show', ['courseStatus' => $courseStatus]);
     }
 
-    //Carregar o formulário de cadastro dos status do curso.
+    // Carregar o formulário cadastrar novo status curso
     public function create()
     {
-        // Carregar a view
+        // Carregar a view 
         return view('course_statuses.create');
     }
 
-    // Cadastrar no banco de dados o status do curso.
+    // Cadastrar no banco de dados o novo status curso
     public function store(CourseStatusRequest $request)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Cadastrar no banco de dados na tabela course_statuses.
+            // Cadastrar no banco de dados na tabela status cursos
             $courseStatus = CourseStatus::create([
-                'name' => $request->name,
+                'name' => $request->name
             ]);
 
             // Salvar log
-            Log::info('Status do curso cadastrado.', ['course_status_id' => $courseStatus->id]);
+            Log::info('Status para curso cadastrado.', ['course_status_id' => $courseStatus->id]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
-            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status do curso cadastrado com sucesso!');
+            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status para curso cadastrado com sucesso!');
         } catch (Exception $e) {
-            // Salvar log
-            Log::notice('Status do curso não cadastrado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao cadastrar o status do curso!');
+            // Salvar log
+            Log::notice('Status para curso não cadastrado.', ['error' => $e->getMessage()]);
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Status para curso não cadastrado!');
         }
     }
 
-    // Carregar o formulário de edição do status do curso.
+    // Carregar o formulário editar status para curso
     public function edit(CourseStatus $courseStatus)
     {
-        // Carregar a view
+        // Carregar a view 
         return view('course_statuses.edit', ['courseStatus' => $courseStatus]);
     }
 
-    // Editar o status do curso no banco de dados.
+    // Editar no banco de dados status para curso
     public function update(CourseStatusRequest $request, CourseStatus $courseStatus)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Editar as informações do registro no banco de dados.
+            // Editar as informações do registro no banco de dados
             $courseStatus->update([
-                'name' => $request->name,
+                'name' => $request->name
             ]);
 
             // Salvar log
-            Log::info('Status do curso editado.', ['course_status_id' => $courseStatus->id]);
+            Log::info('Status para curso editado.', ['course_status_id' => $courseStatus->id]);
 
-            // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status do curso atualizado com sucesso!');
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('course_statuses.show', ['courseStatus' => $courseStatus->id])->with('success', 'Status para curso editado com sucesso!');
         } catch (Exception $e) {
-            // Salvar log
-            Log::notice('Status do curso não editado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao atualizar o status do curso!');
+            // Salvar log
+            Log::notice('Status para curso não editado.', ['error' => $e->getMessage()]);
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Status para curso não editado!');
         }
     }
 
-    // Deletar o status do curso do banco de dados.
+    // Excluir o curso do banco de dados
     public function destroy(CourseStatus $courseStatus)
     {
+        // Capturar possíveis exceções durante a execução.
         try {
-            // Deletar o registro do banco de dados.
+
+            // Excluir o registro do banco de dados
             $courseStatus->delete();
 
             // Salvar log
-            Log::info('Status do curso deletado.', ['course_status_id' => $courseStatus->id]);
-
-            // Redirecionar o usuário, enviar a mensagem de sucesso.
-            return redirect()->route('course_statuses.index')->with('success', 'Status do curso deletado com sucesso!');
+            Log::info('Status para curso apagado.', ['course_status_id' => $courseStatus->id]);
+            
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('course_statuses.index')->with('success', 'Status para curso apagado com sucesso!');
         } catch (Exception $e) {
-            // Salvar log
-            Log::notice('Status do curso não deletado.', ['error' => $e->getMessage()]);
 
-            // Redirecionar o usuário, enviar a mensagem de erro.
-            return back()->withInput()->with('error', 'Erro ao deletar o status do curso!');
+            // Salvar log
+            Log::notice('Status para curso não apagado.', ['error' => $e->getMessage()]);
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Status para curso não apagado!');
         }
     }
 }
