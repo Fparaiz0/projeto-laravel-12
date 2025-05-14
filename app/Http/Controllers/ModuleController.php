@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ModuleRequest;
+use App\Models\CourseBatch;
 use App\Models\Module;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -10,10 +11,12 @@ use Illuminate\Support\Facades\Log;
 class ModuleController extends Controller
 {
     // Listar os módulos
-    public function index()
+    public function index(CourseBatch $courseBatch)
     {
         // Recuperar os registros do banco de dados
-        $modules = Module::orderBy('id', 'DESC')->paginate(10);
+        $modules = Module::orderBy('id', 'DESC')
+            ->where('course_batch_id', $courseBatch->id)
+            ->paginate(10);
 
         // Salvar log
         Log::info('Listar os módulos.');

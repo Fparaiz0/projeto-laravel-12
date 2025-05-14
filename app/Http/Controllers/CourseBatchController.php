@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseBatchRequest;
+use App\Models\Course;
 use App\Models\CourseBatch;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -10,10 +11,12 @@ use Illuminate\Support\Facades\Log;
 class CourseBatchController extends Controller
 {
     // Listar as turmas do curso
-    public function index()
+    public function index(Course $course)
     {
         // Recuperar os registros do banco de dados
-        $coursesBatches = CourseBatch::orderBy('id', 'DESC')->paginate(10);
+        $coursesBatches = CourseBatch::orderBy('id', 'DESC')
+            ->where('course_id', $course->id)
+            ->paginate(10);
 
         // Salvar log
         Log::info('Listar as turmas do curso.');

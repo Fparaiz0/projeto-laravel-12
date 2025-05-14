@@ -11,6 +11,7 @@
     @forelse ($coursesBatches as $courseBatch)  
         ID: {{ $courseBatch->id }} <br>
         Nome: {{ $courseBatch->name }} <br>
+        <a href="{{ route('modules.index', ['courseBatch' => $courseBatch->id]) }}">Módulos</a><br>
         <a href="{{ route('course_batches.show', ['courseBatch' => $courseBatch->id]) }}">Visualizar</a><br>
         <a href="{{ route('course_batches.edit', ['courseBatch' => $courseBatch->id]) }}">Editar</a><br>
 

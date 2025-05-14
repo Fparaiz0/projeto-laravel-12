@@ -60,7 +60,7 @@ Route::prefix('course-statuses')->group(function () {
 });
 // Turmas
 Route::prefix('course-batches')->group(function () {
-    Route::get('/', [CourseBatchController::class, 'index'])->name('course_batches.index');
+    Route::get('/{course}', [CourseBatchController::class, 'index'])->name('course_batches.index');
     Route::get('/create', [CourseBatchController::class, 'create'])->name('course_batches.create');
     Route::get('/{courseBatch}', [CourseBatchController::class, 'show'])->name('course_batches.show');
     Route::post('/', [CourseBatchController::class, 'store'])->name('course_batches.store');
@@ -70,7 +70,7 @@ Route::prefix('course-batches')->group(function () {
 });
 // Modulos
 Route::prefix('modules')->group(function () {
-    Route::get('/', [ModuleController::class, 'index'])->name('modules.index');
+    Route::get('/{courseBatch}', [ModuleController::class, 'index'])->name('modules.index');
     Route::get('/create', [ModuleController::class, 'create'])->name('modules.create');
     Route::get('/{module}', [ModuleController::class, 'show'])->name('modules.show');
     Route::post('/', [ModuleController::class, 'store'])->name('modules.store');
@@ -80,7 +80,7 @@ Route::prefix('modules')->group(function () {
 });
 // Aulas
 Route::prefix('lessons')->group(function () {
-    Route::get('/', [LessonController::class, 'index'])->name('lessons.index');
+    Route::get('/{module}', [LessonController::class, 'index'])->name('lessons.index');
     Route::get('/create', [LessonController::class, 'create'])->name('lessons.create');
     Route::get('/{lesson}', [LessonController::class, 'show'])->name('lessons.show');
     Route::post('/', [LessonController::class, 'store'])->name('lessons.store');

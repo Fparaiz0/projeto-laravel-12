@@ -11,6 +11,7 @@
     @forelse ($courses as $course)
         ID: {{ $course->id }} <br>
         Nome: {{ $course->name }} <br>
+        <a href="{{ route('course_batches.index', ['course' => $course->id]) }}">Turmas</a><br>
         <a href="{{ route('courses.show', ['course' => $course->id]) }}">Visualizar</a><br>
         <a href="{{ route('courses.edit', ['course' => $course->id]) }}">Editar</a><br>
 

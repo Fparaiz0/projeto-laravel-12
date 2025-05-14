@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LessonRequest;
 use App\Models\Lesson;
+use App\Models\Module;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
 class LessonController extends Controller
 {
     // Listar as aulas
-    public function index()
+    public function index(Module $module)
     {
         // Recuperar os registros do banco de dados
-        $lessons = Lesson::orderBy('id', 'DESC')->paginate(10);
+        $lessons = Lesson::orderBy('id', 'DESC')
+            ->where('module_id', $module->id)
+            ->paginate(10);
 
         // Salvar log  
         Log::info('Listar as aulas.');
