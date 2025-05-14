@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseBatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
@@ -31,6 +32,9 @@ Route::get('/register', [AuthController::class, 'create'])->name('register');
 
 // Receber os dados do formulário e cadastrar novo usuário
 Route::post('/register', [AuthController::class, 'store'])->name('register.store');
+
+// Solicitar link para resetar a senha  
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {

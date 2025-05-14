@@ -19,7 +19,7 @@
 
     </form>
 
-    <a href="#">Esqueceu a senha?</a><br>
+    <a href="{{ route('password.request') }}">Esqueceu a senha?</a><br>
     Precisa de uma conta? <a href="{{ route('register') }}">Inscrever-se!</a><br><br>
     
 @endsection
