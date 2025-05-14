@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -19,7 +20,7 @@ class UserController extends Controller
         $users = User::orderBy('id', 'DESC')->paginate(10);
 
         // Salvar log
-        Log::info('Listar os usuários.');
+        Log::info('Listar os usuários.', ['action_user_id' => Auth::id()]);
 
         // Carregar a view 
         return view('users.index', ['users' => $users]);
@@ -30,7 +31,7 @@ class UserController extends Controller
     {
 
         // Salvar log
-        Log::info('Visualizar o usuário.', ['user_id' => $user->id]);
+        Log::info('Visualizar o usuário.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
 
         // Carregar a view 
         return view('users.show', ['user' => $user]);
@@ -56,7 +57,7 @@ class UserController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Usuário cadastrado.', ['user_id' => $user->id]);
+            Log::info('Usuário cadastrado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário cadastrado com sucesso!');
@@ -89,7 +90,7 @@ class UserController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Usuário editado.', ['user_id' => $user->id]);
+            Log::info('Usuário editado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Usuário editado com sucesso!');
@@ -132,7 +133,7 @@ class UserController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Senha do usuário editado.', ['user_id' => $user->id]);
+            Log::info('Senha do usuário editado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Senha do usuário editado com sucesso!');
@@ -156,7 +157,7 @@ class UserController extends Controller
             $user->delete();
 
             // Salvar log
-            Log::info('Usuário apagado.', ['user_id' => $user->id]);
+            Log::info('Usuário apagado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('users.index')->with('success', 'Usuário apagado com sucesso!');

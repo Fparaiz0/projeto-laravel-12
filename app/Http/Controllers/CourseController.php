@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
@@ -16,7 +17,7 @@ class CourseController extends Controller
         $courses = Course::orderBy('id', 'DESC')->paginate(10);
 
         // Salvar log
-        Log::info('Listar os cursos.');
+        Log::info('Listar os cursos.', ['action_user_id' => Auth::id()]);
 
         // Carregar a view 
         return view('courses.index', ['courses' => $courses]);
@@ -26,7 +27,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         // Salvar log
-        Log::info('Visualizar o curso.', ['course_id' => $course->id]);
+        Log::info('Visualizar o curso.', ['course_id' => $course->id, 'action_user_id' => Auth::id()]);
 
         // dd($course);
         // Carregar a view 
@@ -51,7 +52,7 @@ class CourseController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Curso cadastrado.', ['course_id' => $course->id]);
+            Log::info('Curso cadastrado.', ['course_id' => $course->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso cadastrado com sucesso!');
@@ -83,7 +84,7 @@ class CourseController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Curso editado.', ['course_id' => $course->id]);
+            Log::info('Curso editado.', ['course_id' => $course->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('courses.show', ['course' => $course->id])->with('success', 'Curso editado com sucesso!');
@@ -107,8 +108,8 @@ class CourseController extends Controller
             $course->delete();
 
             // Salvar log
-            Log::info('Curso apagado.', ['course_id' => $course->id]);
-            
+            Log::info('Curso apagado.', ['course_id' => $course->id, 'action_user_id' => Auth::id()]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('courses.index')->with('success', 'Curso apagado com sucesso!');
         } catch (Exception $e) {

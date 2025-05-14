@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -33,6 +32,9 @@ class LoginController extends Controller
                 return back()->withInput()->with('error', 'E-mail ou a senha inválido!');
             }
 
+            // Salvar log 
+            Log::info('Login!', ['action_user_id' => Auth::id()]);
+
             // Redicionar o usuário
             return redirect()->route('dashboard.index');
         } catch (Exception $e) {
@@ -42,5 +44,18 @@ class LoginController extends Controller
             // Redirecionar o usuário, enviar a mensagem de erro
             return back()->withInput()->with('error', 'E-mail ou a senha inválido!');
         }
+    }
+
+    // Deslogar o usuário
+    public function logout()
+    {
+        // Salvar log 
+        Log::notice('Logout.', ['action_user_id' => Auth::id()]);
+
+        // Deslogar o usuário
+        Auth::logout();
+
+        // Redirecionar o usuário, enviar a mensagem de sucesso 
+        return redirect()->route('login')->with('success', 'Deslogado com sucesso!');
     }
 }

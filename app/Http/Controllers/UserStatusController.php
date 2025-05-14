@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStatusRequest;
-use App\Models\User;
 use App\Models\UserStatus;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserStatusController extends Controller
@@ -18,7 +17,7 @@ class UserStatusController extends Controller
         $userStatuses = UserStatus::orderBy('id', 'DESC')->paginate(10);
 
         // Salvar log
-        Log::info('Listar os status para usuário.');
+        Log::info('Listar os status para usuário.', ['action_user_id' => Auth::id()]);
 
         // Carregar a view 
         return view('user_statuses.index', ['userStatuses' => $userStatuses]);
@@ -28,7 +27,7 @@ class UserStatusController extends Controller
     public function show(UserStatus $userStatus)
     {
         // Salvar log
-        Log::info('Visualizar o status para usuário.', ['user_status_id' => $userStatus->id]);
+        Log::info('Visualizar o status para usuário.', ['user_status_id' => $userStatus->id, 'action_user_id' => Auth::id()]);
 
         // Carregar a view 
         return view('user_statuses.show', ['userStatus' => $userStatus]);
@@ -52,7 +51,7 @@ class UserStatusController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Status para usuário cadastrado.', ['user_status_id' => $userStatus->id]);
+            Log::info('Status para usuário cadastrado.', ['user_status_id' => $userStatus->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user_statuses.show', ['userStatus' => $userStatus->id])->with('success', 'Status para usuário cadastrado com sucesso!');
@@ -84,7 +83,7 @@ class UserStatusController extends Controller
             ]);
 
             // Salvar log
-            Log::info('Status para usuário editado.', ['user_status_id' => $userStatus->id]);
+            Log::info('Status para usuário editado.', ['user_status_id' => $userStatus->id, 'action_user_id' => Auth::id()]);
 
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user_statuses.show', ['userStatus' => $userStatus->id])->with('success', 'Status para usuário editado com sucesso!');
@@ -108,8 +107,8 @@ class UserStatusController extends Controller
             $userStatus->delete();
 
             // Salvar log
-            Log::info('Status para usuário apagado.', ['user_status_id' => $userStatus->id]);
-            
+            Log::info('Status para usuário apagado.', ['user_status_id' => $userStatus->id, 'action_user_id' => Auth::id()]);
+
             // Redirecionar o usuário, enviar a mensagem de sucesso
             return redirect()->route('user_statuses.index')->with('success', 'Status para usuário apagado com sucesso!');
         } catch (Exception $e) {
