@@ -117,10 +117,11 @@ class UserController extends Controller
         // Validar o formulário
         $request->validate(
             [
-                'password' => 'required|min:6',
+                'password' => 'required|confirmed|min:6',
             ],
             [
                 'password.required' => "Campo senha é obrigatório!",
+                'password.confirmed' => 'A confirmação da senha não corresponde!',
                 'password.min' => "Senha com no mínimo :min caracteres!",
             ]
         );

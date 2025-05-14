@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\AuthLoginRequest;
+use App\Http\Requests\AuthRegisterUserRequest;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     //Login 
     public function index()
@@ -16,7 +18,7 @@ class LoginController extends Controller
     }
 
     // Validar os dados do usuário no login 
-    public function loginProcess(LoginRequest $request)
+    public function loginProcess(AuthLoginRequest $request)
     {
         // Capturar possiveis exceções durante a execução 
         try {
@@ -57,5 +59,39 @@ class LoginController extends Controller
 
         // Redirecionar o usuário, enviar a mensagem de sucesso 
         return redirect()->route('login')->with('success', 'Deslogado com sucesso!');
+    }
+
+    // Formulário cadastrar novo usuário 
+    public function create()
+    {
+        // Carregar a VIEW 
+        return view('auth.register');
+    }
+
+    // Cadastrar no banco de dados o novo usuário
+    public function store(AuthRegisterUserRequest $request)
+    {
+        // Capturar possíveis exceções durante a execução.
+        try {
+            // Cadastrar no banco de dados na tabela usuário
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+
+            // Salvar log
+            Log::info('Usuário cadastrado.', ['user_id' => $user->id]);
+
+            // Redirecionar o usuário, enviar a mensagem de sucesso
+            return redirect()->route('login')->with('success', 'Cadastrado realizado com sucesso!');
+        } catch (Exception $e) {
+
+            // Salvar log
+            Log::notice('Usuário não cadastrado.', ['error' => $e->getMessage()]);
+
+            // Redirecionar o usuário, enviar a mensagem de erro
+            return back()->withInput()->with('error', 'Cadastrado não realizado com sucesso!');
+        }
     }
 }

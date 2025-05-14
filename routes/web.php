@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseBatchController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
@@ -16,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Tela de login 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login');
 
 // Processar os dados do login
-Route::post('/login', [LoginController::class, 'loginProcess'])->name('login.process');
+Route::post('/login', [AuthController::class, 'loginProcess'])->name('login.process');
 
 // Logout
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// Formulário cadastrar novo usuário 
+Route::get('/register', [AuthController::class, 'create'])->name('register');
+
+// Receber os dados do formulário e cadastrar novo usuário
+Route::post('/register', [AuthController::class, 'store'])->name('register.store');
 
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {

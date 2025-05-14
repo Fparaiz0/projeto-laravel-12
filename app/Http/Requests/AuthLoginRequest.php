@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class AuthLoginRequest extends FormRequest
 {
     /**
      * Determina se o usuário está autorizado a fazer esta requisição.
