@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,15 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Página inicial do Administrativo
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    // Página de Perfil
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/edit-password', [ProfileController::class, 'editPassword'])->name('profile.edit_password');
+        Route::put('/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update_password');
+    });
 
     // Usuários
     Route::prefix('users')->group(function () {

@@ -14,6 +14,7 @@
     <a href="{{ route('course_statuses.index') }}">Status Cursos</a><br>
     <a href="{{ route('users.index') }}">Usuários</a><br>
     <a href="{{ route('user_statuses.index') }}">Status Usuários</a><br>
+    <a href="{{ route('profile.show') }}">Perfil</a><br>
     <a href="{{ route('logout') }}">Sair</a><br>
 
     @yield('content')
