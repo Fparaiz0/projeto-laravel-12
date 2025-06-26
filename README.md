@@ -193,6 +193,27 @@ Limpar cache de configuração.
 php artisan config:clear
 ```
 
+Instalar a dependência de permissão. 
+```
+composer require spatie/laravel-permission
+```
+
+Criar as migrations para o sistema de permissão. 
+```
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+
+Limpar cache de configuração. 
+```
+php artisan config:clear
+```
+
+Executar as migrations do sistema de permissão. 
+```
+php artisan migrate
+
+```
+
 ## Como enviar e baixar os arquivos do GitHub
 
 - Criar o repositório **"projeto-laravel-12"** no GitHub.
