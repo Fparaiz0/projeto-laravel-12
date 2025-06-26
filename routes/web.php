@@ -39,6 +39,7 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink
 
 // Formulário para redefinir a senha com o token 
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showRequestForm'])->name('password.reset');
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');
 
 // Grupo de rotas restritas
 Route::group(['middleware' => 'auth'], function () {
