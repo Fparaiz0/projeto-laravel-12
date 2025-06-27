@@ -68,6 +68,7 @@ class RoleSeeder extends Seeder
                 'create-user',
                 'edit-user',
                 'edit-password-user',
+                'edit-roles-user',
                 'destroy-user',
 
                 // Acesso Status do Usuários
@@ -174,6 +175,7 @@ class RoleSeeder extends Seeder
                 // Acesso Usuários
                 'index-user',
                 'show-user',
+                'create-user', 
 
                 // Acesso Módulos
                 'index-module',

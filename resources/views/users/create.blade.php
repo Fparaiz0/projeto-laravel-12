@@ -20,6 +20,7 @@
         <label>E-mail: </label>
         <input type="email" name="email" id="email" placeholder="E-mail do usuário" value="{{ old('email') }}" required><br><br>
 
+        @can('edit-roles-user')
         <label>Papel: </label>
         @forelse ($roles as $role)
             @if ($role != 'Super Admin' || Auth::user()->hasRole('Super Admin'))
@@ -30,6 +31,7 @@
             <p>Nenhum pepel disponível.</p>
         @endforelse
         <br><br>
+        @endcan
 
         <label>Senha: </label>
         <input type="password" name="password" id="password" placeholder="Senha do usuário" value="{{ old('password') }}" required><br><br>

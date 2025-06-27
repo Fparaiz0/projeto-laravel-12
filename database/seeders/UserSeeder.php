@@ -50,7 +50,6 @@ class UserSeeder extends Seeder
 
                 // Atribuir papel para o usuário
                 $teacher->assignRole('Professor');
-                $teacher->assignRole('Aluno'); 
 
                 // Se não encontrar o registro com o e-mail, cadastra o registro no BD
                 $tutor = User::firstOrCreate(

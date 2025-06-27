@@ -26,6 +26,7 @@ class PermissionSeeder extends Seeder
             'create-user',
             'edit-user',
             'edit-password-user',
+            'edit-roles-user',
             'destroy-user', 
 
             'index-user-status',

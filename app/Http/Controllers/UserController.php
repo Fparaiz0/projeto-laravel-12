@@ -88,8 +88,14 @@ class UserController extends Controller
     // Carregar o formulário editar usuário
     public function edit(User $user)
     {
+        // Recuperar os papéis 
+        $roles = Role::pluck('name')->all();
+
+        // Recuperar os papéis do usuário
+        $userRoles = $user->roles->pluck('name')->toArray(); 
+
         // Carregar a view 
-        return view('users.edit', ['user' => $user]);
+        return view('users.edit', ['user' => $user, 'roles' => $roles, 'userRoles' => $userRoles]);
     }
 
     // Editar no banco de dados o usuário
@@ -102,6 +108,18 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
+
+            // Se houver papéis enviados no request, sincroniza-os com o usuário
+            if($request->filled('roles')){
+                // Verificar se todos os papéis existem 
+                $validRoles = Role::whereIn('name', $request->roles)->pluck('name')->toArray();
+
+                // Atribui os papéis válidos ao usuário 
+                $user->syncRoles($validRoles); // Se for apenas um papel coloque assignRole() no lugar de syncRoles que serve para vários papéis 
+            }else{
+                // Se nenhum papel for enviado, remove todos os papéis do usuário
+                $user->syncRoles([]); 
+            }
 
             // Salvar log
             Log::info('Usuário editado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);
