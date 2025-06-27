@@ -34,6 +34,10 @@
         <a href="{{ route('roles.index') }}">Papéis</a><br>
     @endcan
 
+    @can('index-permission')
+        <a href="{{ route('permissions.index') }}">Permissões</a><br>
+    @endcan
+
     @can('show-profile')
         <a href="{{ route('profile.show') }}">Perfil</a><br>
     @endcan
