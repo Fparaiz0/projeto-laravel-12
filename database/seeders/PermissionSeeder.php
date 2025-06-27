@@ -64,6 +64,12 @@ class PermissionSeeder extends Seeder
             'create-lesson',
             'edit-lesson',
             'destroy-lesson',
+
+            'index-role',
+            'show-role',
+            'create-role',
+            'edit-role',
+            'destroy-role',
         ]; 
 
         foreach ($permissions as $permission){ 

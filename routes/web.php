@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
@@ -132,5 +133,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/{lesson}/edit', [LessonController::class, 'edit'])->name('lessons.edit')->middleware('permission:edit-lesson');;
         Route::put('/{lesson}', [LessonController::class, 'update'])->name('lessons.update')->middleware('permission:edit-lesson');;
         Route::delete('/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy')->middleware('permission:destroy-lesson');;
+    });
+
+    // Papéis
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RoleController::class, 'index'])->name('roles.index')->middleware('permission:index-role');
+        Route::get('/create', [RoleController::class, 'create'])->name('roles.create')->middleware('permission:create-role');
+        Route::get('/{role}', [RoleController::class, 'show'])->name('roles.show')->middleware('permission:show-role');
+        Route::post('/', [RoleController::class, 'store'])->name('roles.store')->middleware('permission:create-role');
+        Route::get('/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit')->middleware('permission:edit-role');
+        Route::put('/{role}', [RoleController::class, 'update'])->name('roles.update')->middleware('permission:edit-role');
+        Route::delete('/{role}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('permission:destroy-role');
     });
 });

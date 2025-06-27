@@ -30,6 +30,10 @@
         <a href="{{ route('user_statuses.index') }}">Status Usuários</a><br>
     @endcan
 
+    @can('index-role')
+        <a href="{{ route('roles.index') }}">Papéis</a><br>
+    @endcan
+
     @can('show-profile')
         <a href="{{ route('profile.show') }}">Perfil</a><br>
     @endcan

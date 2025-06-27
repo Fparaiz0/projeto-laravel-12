@@ -91,6 +91,13 @@ class RoleSeeder extends Seeder
                 'create-lesson',
                 'edit-lesson',
                 'destroy-lesson',
+
+                // Acesso Papéis
+                'index-role',
+                'show-role',
+                'create-role',
+                'edit-role',
+                'destroy-role',
             ]);
 
             /*******  Professor  *******/
