@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Module;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class ModuleSeeder extends Seeder
 {
@@ -34,7 +35,7 @@ class ModuleSeeder extends Seeder
                 ['id' => 3, 'name' => 'Integrar o Layout', 'course_batch_id' => 1],
             );
         } catch (Exception $e) {
-            // Lidar com a exceção
+            Log::notice('Módulo não cadastrado.', ['error' => $e->getMessage()]);
         }
     }
 }

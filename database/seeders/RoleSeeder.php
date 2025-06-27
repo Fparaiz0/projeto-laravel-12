@@ -72,5 +72,11 @@ class RoleSeeder extends Seeder
             ['name' => 'Aluno'], 
             ['name' => 'Aluno'], 
         );  
+
+        // Cadastrar permissão para o papel 
+        $student->givePermissionTo([
+            'index-course',
+            'show-course',
+        ]);
     }
 }

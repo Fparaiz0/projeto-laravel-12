@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Course;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class CourseSeeder extends Seeder
 {
@@ -34,7 +35,7 @@ class CourseSeeder extends Seeder
                 ['id' => 3, 'name' => 'Curso de Laravel 12'],
             );
         } catch (Exception $e) {
-            // Lidar com a exceção
+            Log::notice('Cursos não cadastrado.', ['error' => $e->getMessage()]);
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Lesson;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class LessonSeeder extends Seeder
 {
@@ -34,7 +35,7 @@ class LessonSeeder extends Seeder
                 ['id' => 3, 'name' => 'Criar a Base do Projeto', 'module_id' => 1],
             );
         } catch (Exception $e) {
-            // Lidar com a exceção
+            Log::notice('Aulas não cadastrada.', ['error' => $e->getMessage()]);
         }
     }
 }

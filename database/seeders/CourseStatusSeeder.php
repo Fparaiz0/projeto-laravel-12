@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\CourseStatus;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
 class CourseStatusSeeder extends Seeder
 {
@@ -34,7 +35,7 @@ class CourseStatusSeeder extends Seeder
                 ['id' => 3, 'name' => 'Análise'],
             );
         } catch (Exception $e) {
-            // Lidar com a exceção
+            Log::notice('Status dos cursos não cadastrado.', ['error' => $e->getMessage()]);
         }
     }
 }
