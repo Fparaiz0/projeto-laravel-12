@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,9 @@ class DatabaseSeeder extends Seeder
         // Seeds que devem rodar em qualquer ambiente
         if (App::environment() !== 'production') {
             $this->call([
+                PermissionSeeder::class, 
+                RoleSeeder::class,
+
                 UserStatusSeeder::class,
                 UserSeeder::class,
 

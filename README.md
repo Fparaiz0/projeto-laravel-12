@@ -211,7 +211,6 @@ php artisan config:clear
 Executar as migrations do sistema de permissão. 
 ```
 php artisan migrate
-
 ```
 
 ## Como enviar e baixar os arquivos do GitHub
