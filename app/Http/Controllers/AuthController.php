@@ -8,6 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -79,6 +80,11 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
+
+            // Verificar se o papel "Aluno" existe antes de atribuir
+            if(Role::where('name', 'Aluno')->exists()){
+                $user->assignRole('Aluno'); 
+            }
 
             // Salvar log
             Log::info('Usuário cadastrado.', ['user_id' => $user->id]);

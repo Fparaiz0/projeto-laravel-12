@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -40,8 +41,11 @@ class UserController extends Controller
     // Carregar o formulário cadastrar novo usuário
     public function create()
     {
+        // Recuperar os papéis
+        $roles = Role::pluck('name')->all(); 
+
         // Carregar a view 
-        return view('users.create');
+        return view('users.create', ['roles' => $roles]);
     }
 
     // Cadastrar no banco de dados o novo usuário
@@ -55,6 +59,16 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
+
+            // Verificar se veio algum papel selecionado
+            if($request->filled('roles')){
+                // Verificar se todos os papéis existem 
+                $validRoles = Role::whereIn('name', $request->roles)->pluck('name')->toArray();
+
+                // Atribui os papéis válidos ao usuário 
+                $user->syncRoles($validRoles); // Se for apenas um papel coloque assignRole() no lugar de syncRoles que serve para vários papéis 
+                
+            }
 
             // Salvar log
             Log::info('Usuário cadastrado.', ['user_id' => $user->id, 'action_user_id' => Auth::id()]);

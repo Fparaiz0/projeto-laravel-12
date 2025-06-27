@@ -20,6 +20,17 @@
         <label>E-mail: </label>
         <input type="email" name="email" id="email" placeholder="E-mail do usuário" value="{{ old('email') }}" required><br><br>
 
+        <label>Papel: </label>
+        @forelse ($roles as $role)
+            @if ($role != 'Super Admin' || Auth::user()->hasRole('Super Admin'))
+                <input type="checkbox" name="roles[]" id="role_{{ Str::slug($role) }}" value="{{ $role }}" {{ collect(old('role'))->contains($role) ? 'checked' : '' }}>
+                <label for="role_{{ Str::slug($role) }}"> {{ $role }} </label>
+            @endif
+        @empty
+            <p>Nenhum pepel disponível.</p>
+        @endforelse
+        <br><br>
+
         <label>Senha: </label>
         <input type="password" name="password" id="password" placeholder="Senha do usuário" value="{{ old('password') }}" required><br><br>
 

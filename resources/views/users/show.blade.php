@@ -33,6 +33,17 @@
     Nome: {{ $user->name }}<br>
     E-mail: {{ $user->email }}<br>
     Status: {{ $user->userStatus->name }}<br>
+    Papel: 
+    @forelse ($user->getRoleNames() as $index => $role)
+        @if (!$loop->last)
+            {{ $role . ',' }}
+        @else()
+            {{ $role . '.' }}
+        @endif
+    @empty
+        -
+    @endforelse
+    <br>
     Cadastrado: {{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}<br>
     Editado: {{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y H:i:s') }}<br>
 @endsection

@@ -10,11 +10,30 @@
 
 <body>
     
-    <a href="{{ route('courses.index') }}">Cursos</a><br>
-    <a href="{{ route('course_statuses.index') }}">Status Cursos</a><br>
-    <a href="{{ route('users.index') }}">Usuários</a><br>
-    <a href="{{ route('user_statuses.index') }}">Status Usuários</a><br>
-    <a href="{{ route('profile.show') }}">Perfil</a><br>
+    @can('dashboard')
+        <a href="{{ route('dashboard.index') }}">Dashboard</a><br>
+    @endcan
+
+    @can('index-course')
+        <a href="{{ route('courses.index') }}">Cursos</a><br>
+    @endcan
+
+    @can('index-course-status')
+        <a href="{{ route('course_statuses.index') }}">Status Cursos</a><br>
+    @endcan
+
+    @can('index-user')
+        <a href="{{ route('users.index') }}">Usuários</a><br>
+    @endcan
+
+    @can('index-user-status')
+        <a href="{{ route('user_statuses.index') }}">Status Usuários</a><br>
+    @endcan
+
+    @can('show-profile')
+        <a href="{{ route('profile.show') }}">Perfil</a><br>
+    @endcan
+
     <a href="{{ route('logout') }}">Sair</a><br>
 
     @yield('content')
