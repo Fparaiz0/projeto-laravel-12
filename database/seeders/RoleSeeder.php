@@ -98,6 +98,9 @@ class RoleSeeder extends Seeder
                 'create-role',
                 'edit-role',
                 'destroy-role',
+
+                // Acesso Permissões do papel
+                'index-role-permission',
             ]);
 
             /*******  Professor  *******/

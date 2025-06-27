@@ -11,6 +11,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use Illuminate\Support\Facades\Route;
@@ -145,4 +146,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/{role}', [RoleController::class, 'update'])->name('roles.update')->middleware('permission:edit-role');
         Route::delete('/{role}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('permission:destroy-role');
     });
+
+    // Permissão do papel 
+    Route::prefix('role-permissions')->group(function () {
+        Route::get('/{role}', [RolePermissionController::class, 'index'])->name('role-permissions-index')->middleware('permission:index-role-permission'); });
+
 });

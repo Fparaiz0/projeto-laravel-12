@@ -70,6 +70,8 @@ class PermissionSeeder extends Seeder
             'create-role',
             'edit-role',
             'destroy-role',
+
+            'index-role-permission', 
         ]; 
 
         foreach ($permissions as $permission){ 
