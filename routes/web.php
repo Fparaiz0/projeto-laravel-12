@@ -149,6 +149,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Permissão do papel 
     Route::prefix('role-permissions')->group(function () {
-        Route::get('/{role}', [RolePermissionController::class, 'index'])->name('role-permissions-index')->middleware('permission:index-role-permission'); });
+        Route::get('/{role}', [RolePermissionController::class, 'index'])->name('role-permissions.index')->middleware('permission:index-role-permission');
+        Route::get('/{role}/{permission}', [RolePermissionController::class, 'update'])->name('role-permissions.update')->middleware('permission:update-role-permission');  
+    });
 
 });

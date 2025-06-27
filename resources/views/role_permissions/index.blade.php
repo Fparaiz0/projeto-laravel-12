@@ -16,9 +16,13 @@
         Papel: {{{ $role->name }}}<br>
 
         @if (in_array($permission->id, $rolePermissions ?? []))
-            <span style="color: #086">Liberado</span>
+            <a href="{{ route('role-permissions.update', ['role' => $role->id, 'permission' => $permission->id]) }}">
+                <span style="color: #086">Liberado</span>
+            </a>
         @else
-            <span style="color: #f00">Bloqueado</span>
+        <a href="{{ route('role-permissions.update', ['role' => $role->id, 'permission' => $permission->id]) }}">
+                <span style="color: #f00">Bloqueado</span>
+            </a>
         @endif
         <hr>
     @empty

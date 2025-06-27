@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,5 +42,35 @@ class RolePermissionController extends Controller
             'permissions' => $permissions, 
             'role' => $role, 
         ]);
+    }
+
+    // Editar a permissão de acesso a página para o papel
+    public function update(Role $role, Permission $permission)
+    {
+        // Capturar possíveis exceções durante a execução
+        try{
+            // Definir ação (Bloquear ou Liberar)
+            $action = $role->permissions->contains($permission) ? 'bloquear' : 'liberar'; 
+
+            // Liberar ou bloquear a permissão
+           $role->{$action === 'bloquear' ? 'revokePermissionTo' : 'givePermissionTo'}($permission); 
+
+            // Salvar log 
+           Log::info(ucfirst($action) . 'permissão para o papel', [
+            'role_id' => $role->id,
+            'permission_id' => $permission->id, 
+            'action_user_id'=> Auth::id()
+        ]);
+
+           // Redirecionar o usuário, enviar a mensagem de sucesso 
+           return redirect()->route('role-permissions.index', ['role' => $role->id])->with('success','Permissão' . ($action === 'bloquear' ? ' bloqueada ' : ' liberada ') . 'com sucesso!');
+
+        } catch(Exception $e) {
+            // Salvar log 
+            Log::notice('Permissão para o papel não editada.', ['error' => $e->getMessage(), 'action_user_id' => Auth::id()]);
+
+            // Redirecionar o usuário, enviar a mensagem de erro 
+            return back()->withInput()->with('error', 'Permissão para o papel não editada!'); 
+        }
     }
 }

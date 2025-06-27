@@ -16,7 +16,7 @@
         Nome: {{ $role->name }}<br>
 
         @can('index-role-permission')
-            <a href="{{ route('role-permissions-index', ['role' => $role->id]) }}">Permissões</a><br>
+            <a href="{{ route('role-permissions.index', ['role' => $role->id]) }}">Permissões</a><br>
         @endcan
 
         @can('show-role')
