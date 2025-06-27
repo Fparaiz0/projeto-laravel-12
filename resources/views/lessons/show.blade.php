@@ -3,17 +3,25 @@
 @section('content')
     <h2>Detalhes da Aula</h2>
 
-    <a href="{{ route('lessons.index', ['module' => $lesson->module->id]) }}">Aulas</a><br>
-    <a href="{{ route('lessons.edit', ['lesson' => $lesson->id]) }}">Editar</a><br>
+    @can('index-lesson')
+        <a href="{{ route('lessons.index', ['module' => $lesson->module->id]) }}">Aulas</a><br>
+    @endcan
 
-    <form action="{{ route('lessons.destroy', ['lesson' => $lesson->id]) }}" method="POST">
-        @csrf
-        @method('delete')
+    @can('edit-lesson')
+        <a href="{{ route('lessons.edit', ['lesson' => $lesson->id]) }}">Editar</a><br>
+    @endcan
 
-        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    @can('destroy-lesson')
+        <form action="{{ route('lessons.destroy', ['lesson' => $lesson->id]) }}" method="POST">
+            @csrf
+            @method('delete')
 
-    </form><br><br>
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
 
+        </form><br>
+    @endcan
+    
+    <br>
     <x-alert />
 
     {{-- Imprimir o registro --}}

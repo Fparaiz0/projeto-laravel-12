@@ -3,24 +3,36 @@
 @section('content')
     <h2>Listar os Status Usuário</h2>
 
-    <x-alert />
+    @can('create-user-status')
+        <a href="{{ route('user_statuses.create') }}">Cadastrar</a><br>
+    @endcan
 
-    <a href="{{ route('user_statuses.create') }}">Cadastrar</a><br><br>
+    <br>
+    <x-alert />
 
     {{-- Imprimir os registros --}}
     @forelse ($userStatuses as $userStatus)
         ID: {{ $userStatus->id }}<br>
         Nome: {{ $userStatus->name }}<br>
-        <a href="{{ route('user_statuses.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a><br>
-        <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
 
-        <form action="{{ route('user_statuses.destroy', ['userStatus' => $userStatus->id]) }}" method="POST">
-            @csrf
-            @method('delete')
+        @can('show-user-status')
+            <a href="{{ route('user_statuses.show', ['userStatus' => $userStatus->id]) }}">Visualizar</a><br>
+        @endcan
 
-            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        @can('edit-user-status')
+            <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
+        @endcan
 
-        </form>
+        @can('destroy-user-status')
+            <form action="{{ route('user_statuses.destroy', ['userStatus' => $userStatus->id]) }}" method="POST">
+                @csrf
+                @method('delete')
+
+                <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+
+            </form>
+        @endcan
+        
         <hr>
     @empty
         Nenhum registro encontrado!

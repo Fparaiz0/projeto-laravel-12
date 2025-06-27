@@ -3,9 +3,15 @@
 @section('content')
     <h2>Editar Módulo</h2>
 
-    <a href="{{ route('modules.index', ['courseBatch' => $module->course_batch_id]) }}">Listar Módulos</a><br>
-    <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a><br><br>
+    @can('index-module')
+        <a href="{{ route('modules.index', ['courseBatch' => $module->course_batch_id]) }}">Listar Módulos</a><br>
+    @endcan
 
+    @can('show-module')
+        <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a><br>
+    @endcan
+
+    <br>
     <x-alert /> 
 
     <form action="{{ route('modules.update', ['module' => $module->id]) }}" method="POST">

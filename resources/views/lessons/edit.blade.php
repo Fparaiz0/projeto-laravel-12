@@ -2,10 +2,16 @@
 
 @section('content')
     <h2>Editar Aula</h2>
-    
-    <a href="{{ route('lessons.index', ['module' => $lesson->module_id]) }}">Aulas</a><br>
-    <a href="{{ route('lessons.show', ['lesson' => $lesson->id]) }}">Visualizar</a><br><br>
 
+    @can('index-lesson')
+        <a href="{{ route('lessons.index', ['module' => $lesson->module_id]) }}">Aulas</a><br>
+    @endcan
+
+    @can('show-lesson')
+        <a href="{{ route('lessons.show', ['lesson' => $lesson->id]) }}">Visualizar</a><br>
+    @endcan
+
+    <br>
     <x-alert />
 
     <form action="{{ route('lessons.update', ['lesson' => $lesson->id]) }}" method="POST">

@@ -3,8 +3,11 @@
 @section('content')
     <h2>Cadastrar Status Usuário</h2>
 
-    <a href="{{ route('user_statuses.index') }}">Listar</a><br><br>
+    @can('index-user-status')
+        <a href="{{ route('user_statuses.index') }}">Listar</a><br>
+    @endcan
 
+    <br>
     <x-alert />
 
     <form action="{{ route('user_statuses.store') }}" method="POST">

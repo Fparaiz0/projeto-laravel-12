@@ -3,7 +3,9 @@
 @section('content')
     <h2>Listar os Cursos</h2>
 
-    <a href="{{ route('courses.create') }}">Cadastrar</a><br><br>
+    @can ('create-course' )
+        <a href="{{ route('courses.create') }}">Cadastrar</a><br><br>
+    @endcan
 
     <x-alert />
 
@@ -11,17 +13,27 @@
     @forelse ($courses as $course)
         ID: {{ $course->id }}<br>
         Nome: {{ $course->name }}<br>
-        <a href="{{ route('course_batches.index', ['course' => $course->id]) }}">Turmas</a><br>
-        <a href="{{ route('courses.show', ['course' => $course->id]) }}">Visualizar</a><br>
-        <a href="{{ route('courses.edit', ['course' => $course->id]) }}">Editar</a><br>
 
-        <form action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="POST">
-            @csrf
-            @method('delete')
+        @can('index-course-batch')
+            <a href="{{ route('course_batches.index', ['course' => $course->id]) }}">Turmas</a><br>
+        @endcan
 
-            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        @can ('show-course' )
+            <a href="{{ route('courses.show', ['course' => $course->id]) }}">Visualizar</a><br>
+        @endcan
 
-        </form>
+        @can ('edit-course' )
+            <a href="{{ route('courses.edit', ['course' => $course->id]) }}">Editar</a><br>
+        @endcan
+
+        @can ('destroy-course' )
+            <form action="{{ route('courses.destroy', ['course' => $course->id]) }}" method="POST">
+                @csrf
+                @method('delete')
+
+                <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+            </form>
+        @endcan
 
         <hr>
     @empty

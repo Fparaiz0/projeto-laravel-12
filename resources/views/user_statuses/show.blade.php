@@ -3,17 +3,25 @@
 @section('content')
     <h2>Detalhes do Status Usuário</h2>
 
-    <a href="{{ route('user_statuses.index') }}">Listar</a><br>
-    <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
+    @can('index-user-status')
+        <a href="{{ route('user_statuses.index') }}">Listar</a><br>
+    @endcan
 
-    <form action="{{ route('user_statuses.destroy', ['userStatus' => $userStatus->id]) }}" method="POST">
-        @csrf
-        @method('delete')
+    @can('edit-user-status')
+        <a href="{{ route('user_statuses.edit', ['userStatus' => $userStatus->id]) }}">Editar</a><br>
+    @endcan
 
-        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    @can('destroy-user-status')
+        <form action="{{ route('user_statuses.destroy', ['userStatus' => $userStatus->id]) }}" method="POST">
+            @csrf
+            @method('delete')
 
-    </form><br><br>
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
 
+        </form><br>
+    @endcan
+
+    <br>
     <x-alert />
 
     {{-- Imprimir o registro --}}

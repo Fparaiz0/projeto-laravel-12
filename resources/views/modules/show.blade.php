@@ -3,18 +3,29 @@
 @section('content')
     <h2>Detalhes do Módulo</h2>
 
-    <a href="{{ route('modules.index', ['courseBatch' => $module->course_batch_id]) }}">Listar Módulos</a><br>
-    <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Listar Aulas</a><br>
-    <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
+    @can('index-module')
+        <a href="{{ route('modules.index', ['courseBatch' => $module->course_batch_id]) }}">Listar Módulos</a><br>
+    @endcan
 
-    <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
-        @csrf
-        @method('delete')
+    @can('index-lesson')
+        <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Listar Aulas</a><br>
+    @endcan
 
-        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+    @can('edit-module')
+        <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
+    @endcan
 
-    </form><br><br>
+    @can('destroy-module')
+        <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
+            @csrf
+            @method('delete')
 
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+
+        </form><br>
+    @endcan
+
+    <br>
     <x-alert />
 
     {{-- Imprimir o registro --}}

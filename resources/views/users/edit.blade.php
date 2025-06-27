@@ -3,9 +3,15 @@
 @section('content')
     <h2>Editar Usuário</h2>
 
-    <a href="{{ route('users.index') }}">Listar</a><br>
-    <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a><br><br>
+    @can('index-user')
+        <a href="{{ route('users.index') }}">Listar</a><br>
+    @endcan
 
+    @can('show-user')
+        <a href="{{ route('users.show', ['user' => $user->id]) }}">Visualizar</a><br>
+    @endcan
+
+    <br>
     <x-alert />
 
     <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">

@@ -3,17 +3,25 @@
 @section('content')
     <h2>Detalhes Status Curso</h2>
 
-    <a href="{{ route('course_statuses.index') }}">Listar</a><br>
-    <a href="{{ route('course_statuses.edit', ['courseStatus' => $courseStatus->id]) }}">Editar</a><br>
+    @can('index-course-status')
+        <a href="{{ route('course_statuses.index') }}">Listar</a><br>
+    @endcan
 
-    <form action="{{ route('course_statuses.destroy', ['courseStatus' => $courseStatus->id]) }}" method="POST">
-        @csrf
-        @method('delete')
+    @can('edit-course-status')
+        <a href="{{ route('course_statuses.edit', ['courseStatus' => $courseStatus->id]) }}">Editar</a><br>
+    @endcan
+   
+    @can('destroy-course-status')
+        <form action="{{ route('course_statuses.destroy', ['courseStatus' => $courseStatus->id]) }}" method="POST">
+            @csrf
+            @method('delete')
 
-        <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
 
-    </form><br><br>
-
+        </form><br>
+    @endcan
+    
+    <br>
     <x-alert />
 
     {{-- Imprimir o registro --}}

@@ -3,8 +3,11 @@
 @section('content')
     <h2>Cadastrar Aula</h2>
 
-    <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Aulas</a><br><br>
-
+    @can('index-lesson')
+        <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Aulas</a><br>
+    @endcan
+    
+    <br>
     <x-alert />
 
     <form action="{{ route('lessons.store', ['module' => $module->id]) }}" method="POST">

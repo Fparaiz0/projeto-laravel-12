@@ -3,8 +3,13 @@
 @section('content')
     <h2>Editar Status Curso</h2>
 
-    <a href="{{ route('course_statuses.index') }}">Listar</a><br>
-    <a href="{{ route('course_statuses.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a><br><br>
+    @can('index-course-status')
+        <a href="{{ route('course_statuses.index') }}">Listar</a><br>
+    @endcan
+
+    @can('show-course-status')
+        <a href="{{ route('course_statuses.show', ['courseStatus' => $courseStatus->id]) }}">Visualizar</a><br><br>
+    @endcan
 
     <x-alert />
 

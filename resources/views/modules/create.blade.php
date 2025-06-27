@@ -3,7 +3,9 @@
 @section('content')
     <h2>Cadastrar Módulo</h2>
 
-    {{-- <a href="{{ route('modules.index') }}">Listar</a><br><br> --}}
+    @can('index-course-batch')
+        <a href="{{ route('course_batches.index', ['course' => $courseBatch->course_id]) }}">Listar as Turma</a><br>
+    @endcan
 
     <x-alert />
 

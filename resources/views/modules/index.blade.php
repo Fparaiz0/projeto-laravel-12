@@ -3,27 +3,44 @@
 @section('content')
     <h2>Listar os Módulos</h2>
 
+    @can('index-course-batch')
+        <a href="{{ route('course_batches.index', ['course' => $courseBatch->course_id]) }}">Listar as Turma</a><br>
+    @endcan
 
-    <a href="{{ route('course_batches.index', ['course' => $courseBatch->course_id]) }}">Listar as Turma</a><br>
-    <a href="{{ route('modules.create', ['courseBatch' => $courseBatch->id]) }}">Cadastrar</a><br><br>
+    @can('create-module')
+        <a href="{{ route('modules.create', ['courseBatch' => $courseBatch->id]) }}">Cadastrar</a><br>
+    @endcan
 
+    <br>
     <x-alert />
 
     {{-- Imprimir os registros --}}
     @forelse ($modules as $module)
         ID: {{ $module->id }}<br>
         Nome: {{ $module->name }}<br>
-        <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Listar Aulas</a><br>
-        <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a><br>
-        <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
 
-        <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
-            @csrf
-            @method('delete')
+        @can('index-lesson')
+            <a href="{{ route('lessons.index', ['module' => $module->id]) }}">Listar Aulas</a><br>
+        @endcan
 
-            <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+        @can('show-module')
+            <a href="{{ route('modules.show', ['module' => $module->id]) }}">Visualizar</a><br>
+        @endcan
 
-        </form>
+        @can('edit-module')
+            <a href="{{ route('modules.edit', ['module' => $module->id]) }}">Editar</a><br>
+        @endcan
+
+        @can('destroy-module')
+            <form action="{{ route('modules.destroy', ['module' => $module->id]) }}" method="POST">
+                @csrf
+                @method('delete')
+
+                <button type="submit" onclick="return confirm('Tem certeza que deseja apagar este registro?')">Apagar</button>
+
+            </form>
+        @endcan
+        
         <hr>
     @empty
         Nenhum registro encontrado!
